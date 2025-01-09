@@ -24,7 +24,7 @@ Optimism (resource): max 10, starts at 5, gains 1 optimism every time an enemy i
 Serotonin Overload: 3 damage <br/>
 Pep Talk (special): increases hp by 5, reduces Optimism by 2 when targeting a LIVE target, can heal herself at a rate of 2 hp per 1 optimism otherwise <br/>
 <br/>
-<ins>*** Anger ***                                                                                                                                             </ins> <br/>
+<ins>***Anger***                                                                                                                                             </ins> <br/>
 HP: 30 <br/>
 Punch -  8 damage <br/>
 Explode (Special) - Does 3 damage per anger consumed, consumes all anger meter (at least 5), consumes 5 HP per missing anger meter <br/>
