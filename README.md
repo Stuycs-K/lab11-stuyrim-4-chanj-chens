@@ -18,24 +18,24 @@ Make a clear list of features that work/dont work
 
 ## Adventurer Subclasses
 
-***<ins>Joy                                                                                                                                                         </ins> ***
-HP: 20
-Optimism (resource): max 10, starts at 5, gains 1 optimism every time an enemy is attacked
-Serotonin Overload: 3 damage
-Pep Talk (special): increases hp by 5, reduces Optimism by 2 when targeting a LIVE target, can heal herself at a rate of 2 hp per 1 optimism otherwise
-
-***<ins> Anger                                                                                                                                                      </ins> ***
-HP: 30 
-Punch -  8 damage 
-Explode (Special) - Does 3 damage per anger consumed, consumes all anger meter (at least 5), consumes 5 HP per missing anger meter
-Charge: gain 3 anger meter
-Resource - Anger Meter, max 10, charges 1 per attack, starts at 0 
-Can’t heal himself unless boss
-
-***<ins> Anxiety                                                                                                                                                    </ins> ***
-HP: 18
-Demotivate (reduces opponent’s attack ability by 3 damage for 2 turns), consumes 2 negative energy
-Panic Attack  - 5 damage
-Resource : negative energy, starts at 5,  gain 1 per turn passively
-Can’t heal herself unless boss
-
+<ins>***Joy***                                                                                                                                                   </ins> <br/>
+HP: 20 <br/>
+Optimism (resource): max 10, starts at 5, gains 1 optimism every time an enemy is attacked <br/>
+Serotonin Overload: 3 damage <br/>
+Pep Talk (special): increases hp by 5, reduces Optimism by 2 when targeting a LIVE target, can heal herself at a rate of 2 hp per 1 optimism otherwise <br/>
+<br/>
+<ins>*** Anger ***                                                                                                                                             </ins> <br/>
+HP: 30 <br/>
+Punch -  8 damage <br/>
+Explode (Special) - Does 3 damage per anger consumed, consumes all anger meter (at least 5), consumes 5 HP per missing anger meter <br/>
+Charge: gain 3 anger meter <br/>
+Resource - Anger Meter, max 10, charges 1 per attack, starts at 0 <br/>
+Can’t heal himself unless boss <br/>
+<br/>
+<ins>***Anxiety***                                                                                                                                              </ins> <br/>
+HP: 18<br/>
+Demotivate (reduces opponent’s attack ability by 3 damage for 2 turns), consumes 2 negative energy <br/>
+Panic Attack  - 5 damage <br/>
+Resource : negative energy, starts at 5,  gain 1 per turn passively <br/>
+Can’t heal herself unless boss <br/>
+<br/>
