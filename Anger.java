@@ -41,16 +41,16 @@ public class Anger extends Adventurer{
     return specialMax;
   }
 
-  /*Deal 2-7 damage to opponent, restores 2 caffeine*/
+  /*Deal 4-10 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*6)+2;
+    int damage = (int)(Math.random()*6+2)+2;
     other.applyDamage(damage);
-    restoreSpecial(2);
-    return this + " attacked "+ other + " and dealt "+ damage +
-    " points of damage. They then take a sip of their coffee.";
+    restoreSpecial(1);
+    return this + " punches "+ other + ", burning "+ other + " for " damage +
+    " points of damage. \nRage UP! (" + getSpecial + ")";
   }
 
-  /*Deal 3-12 damage to opponent, only if caffeine is high enough.
+  /*Deal damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
   public String specialAttack(Adventurer other){
