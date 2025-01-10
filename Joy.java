@@ -4,17 +4,17 @@ public class Joy extends Adventurer{
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
 
-  public CodeWarrior(String name, int hp){
+  public Joy(String name, int hp){
     super(name,hp);
     optimismMax = 10;
     optimism = optimismMax/2;
   }
 
-  public CodeWarrior(String name){
+  public Joy(String name){
     this(name,20);
   }
 
-  public CodeWarrior(){
+  public Joy(){
     this("Joy");
   }
 
@@ -24,7 +24,7 @@ public class Joy extends Adventurer{
   }
 
   public int getSpecial(){
-    return caffeine;
+    return optimism;
   }
 
   public void setSpecial(int n){
@@ -39,7 +39,7 @@ public class Joy extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
-    int damage = 3;
+    int damage = (int)(Math.random()*3)+2;
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " overloaded "+ other + " with serotonin and dealt "+ damage +
@@ -49,21 +49,19 @@ public class Joy extends Adventurer{
   /*Deal 3-12 damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
-  public String specialAttack(Adventurer other){
+  public String specialSupport(Adventurer other){
     if(getSpecial() >= 2){
-      this.set
-      return this + " used their "+preferredLanguage+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      return "Gives a Pep Talk to "+other+" and restores "
+      + other.restoreSpecial(5)+" "+other.getSpecialName();
     }else{
-      return "Not optimistic enough to use Pep Talk. Instead "+attack(other);
+      return "Not optimistic enough to use Pep Talk. Instead "+support(other);
     }
 
   }
   /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return "Gives a coffee to "+other+" and restores "
-    + other.restoreSpecial(5)+" "+other.getSpecialName();
+    return "Says enocouraging words to "+other+" and restores their HP from "
+    + other.getHP()+" to "+other.setHP(other.getHP() + 3);
   }
   /*Restores 6 special and 1 hp to self.*/
   public String support(){
