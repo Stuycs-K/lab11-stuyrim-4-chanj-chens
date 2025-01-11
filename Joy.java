@@ -46,11 +46,11 @@ public class Joy extends Adventurer{
     " points of damage.";
   }
 
-  /*Deal 3-12 damage to opponent, only if caffeine is high enough.
-  *Reduces caffeine by 8.
+  /*Restores teammate's special by 5 and reduces optimism by 
   */
   public String specialSupport(Adventurer other){
     if(getSpecial() >= 2){
+      this.setSpecial(this.getSpecial() - 2);
       return "Gives a Pep Talk to "+other+" and restores "
       + other.restoreSpecial(5)+" "+other.getSpecialName();
     }else{
@@ -58,16 +58,23 @@ public class Joy extends Adventurer{
     }
 
   }
-  /*Restores 5 special to other*/
-  public String support(Adventurer other){
-    return "Says enocouraging words to "+other+" and restores their HP from "
-    + other.getHP()+" to "+other.setHP(other.getHP() + 3);
+
+  //here because abstract needs it
+  public String specialAttack(Adventurer other){
+    return null;
   }
-  /*Restores 6 special and 1 hp to self.*/
+  /*Restores 5 HP to other*/
+  public String support(Adventurer other){
+    int prevHP = other.getHP();
+    other.setHP(other.getHP() + 5);
+    return "Says encouraging words to "+other+" and restores their HP from "
+    + prevHP +" to " + other.getHP();
+  }
+  /*Restores 3 special and 1 hp to self.*/
   public String support(){
     int hp = 1;
     setHP(getHP()+hp);
-    return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
+    return this+" watches cat videos to restores "+restoreSpecial(3)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
 }
