@@ -48,9 +48,7 @@ public class Anger extends Adventurer{
     " points of damage. \nRage UP! (" + getSpecial() + ")";
   }
 
-  /*Deal damage to opponent, only if caffeine is high enough.
-  *Reduces caffeine by 8.
-  */
+
   public String special(Adventurer other){
     if(getSpecial() >= 5){
       int damage = (getSpecial()*3)+(int)(Math.random()*5);
