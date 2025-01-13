@@ -81,7 +81,14 @@ public class Game{
     return output;
   }
 
-
+  public static boolean isNumeric(String str) {
+    try {
+      Integer.parseInt(str);
+      return true;
+    } catch(NumberFormatException e){
+      return false;
+    }
+  }
 
 
 
@@ -128,7 +135,8 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    enemies.add(new CodeWarrior("tempEnemy"));
+    drawParty(enemies, 0);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
@@ -157,6 +165,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    System.out.println(preprompt);
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -167,16 +176,22 @@ public class Game{
 
       //display event based on last turn's input
       if(partyTurn){
-
+        String sTarget = input.substring(input.length() -1);
+        int target = 0;
+        if (isNumeric(sTarget)){
+          target = Integer.parseInt(sTarget);
+        }
         //Process user input for the last Adventurer:
-        if(input.equals("attack") || input.equals("a")){
+        //attack variables would need to check anger variable
+        if(input.startsWith("attack") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+
+          System.out.println(party.get(whichPlayer).attack(enemies.get(target)));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
-        else if(input.equals("special") || input.equals("sp")){
+        else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+          System.out.println(party.get(whichPlayer).specialAttack(enemies.get(target)));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -184,7 +199,7 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
+          System.out.println(party.get(whichPlayer).support(enemies.get(target)));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
 
