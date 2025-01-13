@@ -3,16 +3,14 @@ public class Anger extends Adventurer{
   private int rage;
   private int specialMax = 10;
   private String specialName = "EXPLODE!";
-  public String getSpecialName(){
-    return special;
-  }
+
   public int getSpecial(){
-    return special;
+    return rage;
   }
-  public Anger(String name, int hp, int special, int specialMax){
+  public Anger(String name, int hp, int rage, int specialMax){
     super(name,hp);
     this.specialMax = specialMax;
-    this.special = special;
+    this.rage = rage;
   }
 
   public Anger(String name, int hp){
@@ -46,23 +44,27 @@ public class Anger extends Adventurer{
     int damage = (int)(Math.random()*6+2)+2;
     other.applyDamage(damage);
     restoreSpecial(1);
-    return this + " punches "+ other + ", burning "+ other + " for " damage +
-    " points of damage. \nRage UP! (" + getSpecial + ")";
+    return this + " punches "+ other + ", burning "+ other + " for " + damage +
+    " points of damage. \nRage UP! (" + getSpecial() + ")";
   }
 
   /*Deal damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
   public String specialAttack(Adventurer other){
-    if(getSpecial() >= 8){
-      setSpecial(getSpecial()-8);
-      int damage = (int)(Math.random()*5+Math.random()*5)+3;
+    if(getSpecial() >= 5){
+      int damage = (getSpecial()*3)+(int)(Math.random()*5);
+      setSpecial(0);
       other.applyDamage(damage);
-      return this + " used their "+preferredLanguage+
-      " skills to hack the matrix. "+
-      " This glitched out "+other+" dealing "+ damage +" points of damage.";
+      return this + " EXPLODES and deals "+ damage + " to " + other + "!";
     }else{
-      return "Not enough caffeine to use the ultimate code. Instead "+attack(other);
+      int damage = 15 + (int)(Math.random()*5);
+      int selfdamage = 5 * (5-getSpecial());
+      setSpecial(0);
+      setHP(getHP() - selfdamage);
+      other.applyDamage(damage);
+      return "Not enough rage to use \"EXPLODE!\". Consumed " + selfdamage + " health!" +
+    "\n" + this + " EXPLODES and deals "+ damage + " to " + other + "!";
     }
 
   }
@@ -78,6 +80,4 @@ public class Anger extends Adventurer{
     return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
-}
-
 }
