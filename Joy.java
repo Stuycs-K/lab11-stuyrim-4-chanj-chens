@@ -72,7 +72,7 @@ public class Joy extends Adventurer{
   }
   /*Restores 3 special and 1 hp to self.*/
   public String support(){
-    int hp = 1;
+    int hp = 3;
     setHP(getHP()+hp);
     return this+" watches cat videos to restores "+restoreSpecial(3)+" "
     + getSpecialName()+ " and "+hp+" HP";

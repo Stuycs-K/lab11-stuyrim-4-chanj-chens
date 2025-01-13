@@ -39,7 +39,7 @@ public class Anger extends Adventurer{
     return specialMax;
   }
 
-
+  /*Deal 4-10 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*6+2)+2;
     other.applyDamage(damage);
@@ -66,12 +66,12 @@ public class Anger extends Adventurer{
     }
 
   }
-
+  /*Restores 5 special to other*/
   public String support(Adventurer other){
-    other.buffOn();
-    return this + " makes "+other+" angry, boosting damage!";
+    return "Gives a coffee to "+other+" and restores "
+    + other.restoreSpecial(5)+" "+other.getSpecialName();
   }
-
+  /*Restores 6 special and 1 hp to self.*/
   public String support(){
     buffOn();
     return this+" gaslights himself into being angry, boosting damage!";
