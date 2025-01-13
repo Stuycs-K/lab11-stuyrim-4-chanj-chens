@@ -73,9 +73,7 @@ public class Anger extends Adventurer{
   }
 
   public String support(){
-    int hp = 1;
-    setHP(getHP()+hp);
-    return this+" drinks a coffee to restores "+restoreSpecial(6)+" "
-    + getSpecialName()+ " and "+hp+" HP";
+    buffOn();
+    return this+" gaslights himself into being angry, boosting damage!";
   }
 }
