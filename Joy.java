@@ -46,9 +46,9 @@ public class Joy extends Adventurer{
     " points of damage.";
   }
 
-  /*Restores teammate's special by 5 and reduces optimism by 
+  /*Restores teammate's special by 5 and reduces optimism by
   */
-  public String specialSupport(Adventurer other){
+  public String special(Adventurer other){
     if(getSpecial() >= 2){
       this.setSpecial(this.getSpecial() - 2);
       return "Gives a Pep Talk to "+other+" and restores "
