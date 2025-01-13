@@ -2,6 +2,8 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
+  private boolean buff = false;
+  private boolean debuff = false;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -99,5 +101,19 @@ public abstract class Adventurer{
 
   public void setName(String s){
     this.name = s;
+  }
+
+  //Custom method to inherit buffs
+  public void buffOn(){
+    buff = true;
+  }
+  public void buffOff(){
+    buff = false;
+  }
+  public void debuffOn(){
+    debuff = true;
+  }
+  public void debuffOff(){
+    debuff = false;
   }
 }
