@@ -49,7 +49,7 @@ public class Anger extends Adventurer{
   }
 
 
-  public String specialAttack(Adventurer other){
+  public String special(Adventurer other){
     if(getSpecial() >= 5){
       int damage = (getSpecial()*3)+(int)(Math.random()*5);
       setSpecial(0);
