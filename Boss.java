@@ -1,5 +1,5 @@
 public class Boss extends Adventurer{
-  private String[] names1 = {"Joe", "Bob", "Samuel", "Joe #2", "Joe #3", "Alpha", "Beta", "Sigma"};
+  private String[] names1 = {"Joe", "Bob", "Mr Kamuel", "Lebonbon", "Kanye East", "Barracks Oboma", "Donald Trombone", "Georgius Washingkilogram"};
   private String[] names2 = {"Lone", "Big", "Old", "Chubby", "Evil", "Malicious", "Young", "Wise"};
   private String[] names3 = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
   private int veggieMeter = 3;
@@ -25,6 +25,9 @@ public class Boss extends Adventurer{
     }
     veggieMeter = n;
   }
+
+  //Constructors
+  public Boss(int hp, int rage, )
 
 
 
