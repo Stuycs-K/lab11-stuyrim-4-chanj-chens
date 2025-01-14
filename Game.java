@@ -17,8 +17,16 @@ public class Game{
         for (int i = 1; i <= WIDTH; i++){
             System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
         }
+        for (int i = 1; i <= WIDTH; i++){
+          Text.go(30,i);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
         for (int i = 1; i <= HEIGHT; i++){
           Text.go(i,1);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+        for (int i = 1; i <= HEIGHT; i++){
+          Text.go(i,80);
             System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
         }
 
