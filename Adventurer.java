@@ -2,8 +2,8 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
-  private boolean buff = false;
-  private boolean debuff = false;
+  private boolean buff;
+  private boolean debuff;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -115,5 +115,14 @@ public abstract class Adventurer{
   }
   public void debuffOff(){
     debuff = false;
+  }
+  public int damageMod(boolean buff, boolean debuff){
+    if(buff == true){
+      return (int) Math.random()*6;
+    }
+    if(debuff == true){
+      return -1 * (int) Math.random()*6;
+    }
+    return 0;
   }
 }
