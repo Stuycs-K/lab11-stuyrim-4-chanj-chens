@@ -62,10 +62,6 @@ public class Joy extends Adventurer{
 
   }
 
-  //here because abstract needs it
-  public String specialAttack(Adventurer other){
-    return null;
-  }
   /*Restores 5 HP to other*/
   public String support(Adventurer other){
     int prevHP = other.getHP();
