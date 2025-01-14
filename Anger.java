@@ -34,6 +34,9 @@ public class Anger extends Adventurer{
 
 
   public void setSpecial(int n){
+    if(n >= getSpecialMax()){
+      this.rage = getSpecialMax();
+    }
     rage = n;
   }
 
@@ -78,5 +81,8 @@ public class Anger extends Adventurer{
     buffOn();
     return this+" gaslights himself into being angry, boosting damage!";
   }
-
+  public String charge(){
+    setSpecial(getSpecial+3);
+    return this + " is charging up his rage!";
+  }
 }
