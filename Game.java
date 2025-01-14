@@ -14,10 +14,15 @@ public class Game{
   public static void drawBackground(){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(1,1);
-        for (int i = 0; i < 80; i++){
-
-            System.out.print(Text.colorize(".", BORDER_BACKGROUND));;
+        for (int i = 1; i <= WIDTH; i++){
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
         }
+        for (int i = 1; i <= HEIGHT; i++){
+          Text.go(i,1);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+
+
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -169,6 +174,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+
     System.out.println(preprompt);
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){

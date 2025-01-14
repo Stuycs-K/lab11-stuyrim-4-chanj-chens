@@ -33,7 +33,7 @@ public class Joy extends Adventurer{
     if (n >= optimismMax){
       optimism = optimismMax;
     }
-    optimisim = n;
+    optimism = n;
   }
 
   public int getSpecialMax(){

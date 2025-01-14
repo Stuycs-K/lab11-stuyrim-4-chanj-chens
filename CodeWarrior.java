@@ -52,7 +52,7 @@ public class CodeWarrior extends Adventurer{
   /*Deal 3-12 damage to opponent, only if caffeine is high enough.
   *Reduces caffeine by 8.
   */
-  public String specialAttack(Adventurer other){
+  public String special(Adventurer other){
     if(getSpecial() >= 8){
       setSpecial(getSpecial()-8);
       int damage = (int)(Math.random()*5+Math.random()*5)+3;
