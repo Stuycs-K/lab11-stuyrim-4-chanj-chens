@@ -14,10 +14,23 @@ public class Game{
   public static void drawBackground(){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(1,1);
-        for (int i = 0; i < 80; i++){
-
-            System.out.print(Text.colorize(".", BORDER_BACKGROUND));;
+        for (int i = 1; i <= WIDTH; i++){
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
         }
+        for (int i = 1; i <= WIDTH; i++){
+          Text.go(30,i);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+        for (int i = 1; i <= HEIGHT; i++){
+          Text.go(i,1);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+        for (int i = 1; i <= HEIGHT; i++){
+          Text.go(i,80);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+
+
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -26,7 +39,8 @@ public class Game{
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    Text.go(startRow,startCol);
+    System.out.println(s);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -169,7 +183,8 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-    System.out.println(preprompt);
+    drawText(preprompt,10,20);
+
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
