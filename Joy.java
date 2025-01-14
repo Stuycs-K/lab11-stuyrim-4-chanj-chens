@@ -1,5 +1,7 @@
 public class Joy extends Adventurer{
   int optimism, optimismMax;
+  private boolean buff = false;
+  private boolean debuff = false;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
@@ -39,7 +41,7 @@ public class Joy extends Adventurer{
 
   /*Deal 2-7 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*3)+2;
+    int damage = (int)(Math.random()*3)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " overloaded "+ other + " with serotonin and dealt "+ damage +
