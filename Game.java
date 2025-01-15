@@ -245,8 +245,8 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-          drawText(preprompt,10+whichPlayer,20); //temp
+          String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/quit";
+          drawText(prompt,10+whichPlayer,20); //temp
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
@@ -267,13 +267,13 @@ public class Game{
         int choiceAction = (int)(Math.random() *3);
         int choicePlayer = (int)(Math.random() *3);
         if (choiceAction == 0){
-          System.out.println(party.get(whichOpponent).attack(enemies.get(choicePlayer)));
+          drawText(enemies.get(whichOpponent).attack(enemies.get(choicePlayer)),15,2);
         }
         if (choiceAction == 1){
-          System.out.println(party.get(whichOpponent).special(enemies.get(choicePlayer)));
+          drawText(enemies.get(whichOpponent).special(enemies.get(choicePlayer)),16,2);
         }
         if (choiceAction == 2){
-          System.out.println(party.get(whichOpponent).support(lowestHP(enemies)));
+          drawText(enemies.get(whichOpponent).support(lowestHP(enemies)),17,2);
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
