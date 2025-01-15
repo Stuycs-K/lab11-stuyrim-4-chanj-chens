@@ -57,7 +57,7 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(row,col);
-    
+
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
   }
 
@@ -142,6 +142,18 @@ public class Game{
     Text.go(32,1);
   }
 
+  public static Adventurer lowestHP(ArrayList<Adventurer> party){
+    int temp = 100;
+    Adventurer result = null;
+    for (Adventurer adventurer : party) {
+      if (adventurer.getHP() < temp){
+        temp = adventurer.getHP();
+        result = adventurer;
+      }
+    }
+    return result;
+  }
+
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -154,7 +166,9 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    enemies.add(new CodeWarrior("tempEnemy"));
+    enemies.add(new CodeWarrior("tempEnemy1"));
+    enemies.add(new CodeWarrior("tempEnemy2"));
+    enemies.add(new CodeWarrior("tempEnemy3"));
     drawParty(enemies, 0);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -178,7 +192,7 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    //drawScreen();//initial state.
 
     //Main loop
 
@@ -232,14 +246,14 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
+          drawText(preprompt,10+whichPlayer,20); //temp
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
-
-          partyTurn = false;
+          drawText(prompt,14,20);
+          partyTurn = false;//temp
           whichOpponent = 0;
         }
         //done with one party member
@@ -250,7 +264,17 @@ public class Game{
         //enemy attacks a randomly chosen person with a randomly chosen attack.z`
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        //YOUR CODE HERE
+        int choiceAction = (int)(Math.random() *3);
+        int choicePlayer = (int)(Math.random() *3);
+        if (choiceAction == 0){
+          System.out.println(party.get(whichOpponent).attack(enemies.get(choicePlayer)));
+        }
+        if (choiceAction == 1){
+          System.out.println(party.get(whichOpponent).special(enemies.get(choicePlayer)));
+        }
+        if (choiceAction == 2){
+          System.out.println(party.get(whichOpponent).support(lowestHP(enemies)));
+        }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
@@ -273,7 +297,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      //drawScreen();
 
 
     }//end of main game loop
