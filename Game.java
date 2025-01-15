@@ -192,7 +192,7 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    //drawScreen();//initial state.
+    drawScreen();//initial state.
 
     //Main loop
 
@@ -297,7 +297,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      //drawScreen();
+      drawScreen();
 
 
     }//end of main game loop
