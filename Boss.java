@@ -1,10 +1,11 @@
 public class Boss extends Adventurer{
-  private String[] names1 = {"Joe", "Bob", "Mr Kamuel", "Lebonbon", "Kanye East", "Barracks Oboma", "Donald Trombone", "Georgius Washingkilogram"};
+  private String[] names1 = {"Joe", "Bob", "Mr Kamuel Sonstantinovich", "Lebonbon", "Kanye East", "Barracks Oboma", "Bonald Trumpet", "Georgius Washingkilogram"};
   private String[] names2 = {"Lone", "Big", "Old", "Chubby", "Evil", "Malicious", "Young", "Wise"};
   private String[] names3 = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
-  private int veggieMeter = 3;
+  private int veg;
   private String specialName = "EAT YOUR VEGETABLES!";
   private int specialMax = 10;
+  private String name;
   public String namegen(){
     return names1[(int) Math.random()*9] + " the " + names2[(int) Math.random()*9] + " " + names3[(int) Math.random()*9];
   }
@@ -14,22 +15,35 @@ public class Boss extends Adventurer{
     return specialName;
   }
   public int getSpecial(){
-    return veggieMeter;
+    return veg;
   }
   public int getSpecialMax(){
     return specialMax;
   }
   public void setSpecial(int n){
     if(n >= getSpecialMax()){
-      this.veggieMeter = getSpecialMax();
+      this.veg = getSpecialMax();
     }
-    veggieMeter = n;
+    veg = n;
   }
 
   //Constructors
-  public Boss(int hp, int rage, )
+  public Boss(String name, int hp, int veg, int specialMax){
+    super(name,hp);
+    this.specialMax = specialMax;
+    this.veg = veg;
+  }
 
+  public Boss(String name, int hp){
+    this(name, hp, 3, 10);
+  }
 
+  public Boss(String name){
+    this(name, 30);
+  }
 
+  public Boss(){
+    this(namegen());
+  }
 
 }
