@@ -1,12 +1,16 @@
 public class Boss extends Adventurer{
-  private String[] names1 = {"Joe", "Bob", "Mr Kamuel Sonstantinovich", "Lebonbon", "Kanye East", "Barracks Oboma", "Bonald Trumpet", "Georgius Washingkilogram"};
-  private String[] names2 = {"Lone", "Big", "Old", "Chubby", "Evil", "Malicious", "Young", "Wise"};
-  private String[] names3 = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
+
   private int veg;
   private String specialName = "EAT YOUR VEGETABLES!";
   private int specialMax = 10;
   private String name;
-  public String namegen(){
+  private boolean debuff = false;
+  private boolean buff = false;
+  private String[] veggies = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
+  public static String namegen(){
+    String[] names1 = {"Joe", "Bob", "Mr Kamuel Sonstantinovich", "Lebonbon", "Kanye East", "Barracks Oboma", "Bonald Trumpet", "Georgius Washingkilogram"};
+    String[] names2 = {"Lone", "Big", "Old", "Chubby", "Evil", "Malicious", "Young", "Wise"};
+    String[] names3 = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
     return names1[(int) Math.random()*9] + " the " + names2[(int) Math.random()*9] + " " + names3[(int) Math.random()*9];
   }
 
@@ -45,5 +49,29 @@ public class Boss extends Adventurer{
   public Boss(){
     this(namegen());
   }
+  public String attack(Adventurer other){
+    int damage = (int)(Math.random()*6+2)+2 + damageMod(buff,debuff);
+    other.applyDamage(damage);
+    restoreSpecial(1);
+    return this + " throws "+ veggies[(int)Math.random()*9] + " at "+ other + " for " + damage + " points of damage.";
+  }
+  /*This is an example of an improvement that you can make to allow
+   * for more flexible targetting.
+   */
+  //heal or buff the party
+  //public abstract String support(ArrayList<Adventurer> others);
+
+  //heal or buff the target adventurer
+  public  String support(Adventurer other);
+
+  //heal or buff self
+  public String support();
+
+  //hurt or hinder the target adventurer, consume some special resource
+  public String special(Adventurer other);
+
+  /*
+  standard methods
+  */
 
 }
