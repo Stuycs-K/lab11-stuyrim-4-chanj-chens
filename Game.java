@@ -60,13 +60,13 @@ public class Game{
     int pos = 0;
     for (int r=0; r < height; r++){
       if (text.length() <= width){
-        drawText(r, col, text);
+        drawText(text,r, col);
         for (int i = text.length(); i <=width; i++){
-          drawText(r, col + text.length + i, " ");
+          drawText(" ", r, col + text.length() + i);
         }
       }
       else{
-        drawText(row, col, text.substring(0,width+1));
+        drawText(text.substring(0,width+1),row, col);
         text = text.substring(width+1);
       }
     }
