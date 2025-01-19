@@ -279,10 +279,7 @@ public class Game{
     String preprompt1 = "How many enemies do you want to play against?";
     TextBox(29, 2, 60, 1, preprompt1);
  
-    
-    //Main loop
-    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-      //Read user input
+    while(input.equals("")){
       input = userInput(in);
 
       if (input.equals("1")){
@@ -297,11 +294,21 @@ public class Game{
         enemies.add(createRandomAdventurer());
         enemies.add(createRandomAdventurer());
       }
+      
+    }
+    
+    drawScreen(party, enemies);
+
+    String preprompt = "Enter command for "+party.get(whichPlayer)+ whichPlayer + ": attack/special/quit";
+    TextBox(29, 2, 60, 1, preprompt);
+
+    //Main loop
+    while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+      //Read user input
+      input = userInput(in);
+
       //example debug statment
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
-      
-      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-      TextBox(29, 2, 60, 1, preprompt);
 
       //display event based on last turn's input
       if(partyTurn){
