@@ -2,6 +2,7 @@ public class Joy extends Adventurer{
   int optimism, optimismMax;
   private boolean buff = false;
   private boolean debuff = false;
+  private int maxHP = 22;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
@@ -13,7 +14,7 @@ public class Joy extends Adventurer{
   }
 
   public Joy(String name){
-    this(name,20);
+    this(name,22);
   }
 
   public Joy(){

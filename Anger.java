@@ -5,7 +5,7 @@ public class Anger extends Adventurer{
   private String specialName = "EXPLODE!";
   private boolean debuff = false;
   private boolean buff = false;
-  private int maxHP = 30;
+  private int maxHP = 35;
 
   public int getSpecial(){
     return rage;
@@ -21,7 +21,7 @@ public class Anger extends Adventurer{
   }
 
   public Anger(String name){
-    this(name, 30);
+    this(name, 35);
   }
 
   public Anger(){
