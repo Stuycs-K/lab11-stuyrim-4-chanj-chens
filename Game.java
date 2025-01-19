@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.ArrayList;
 
 import javax.swing.text.PlainDocument;
 public class Game{
@@ -224,19 +225,19 @@ public class Game{
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-    int enemyNum = (int)(Math.random() *3);
-      if (enemyNum == 0){
-        enemies.add(new Boss());
-      }
-      if (enemyNum == 1){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-      }
-      if (enemyNum == 2){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-      }
+    // int enemyNum = (int)(Math.random() *3);
+    //   if (enemyNum == 0){
+    //     enemies.add(new Boss());
+    //   }
+    //   if (enemyNum == 1){
+    //     enemies.add(createRandomAdventurer());
+    //     enemies.add(createRandomAdventurer());
+    //   }
+    //   if (enemyNum == 2){
+    //     enemies.add(createRandomAdventurer());
+    //     enemies.add(createRandomAdventurer());
+    //     enemies.add(createRandomAdventurer());
+    //   }
       
     // if (input.equals("1")){
     //   enemies.add(new Boss());
@@ -273,24 +274,35 @@ public class Game{
 
     //You can add parameters to draw screen!
     drawScreen(party,enemies);//initial state.
-
-    //Main loop
-
-    // String preprompt1 = "How many enemies do you want to play against?";
-    // TextBox(29, 2, 60, 1, preprompt1);
-
+    
     //display this prompt at the start of the game.
-
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-    TextBox(29, 2, 60, 1, preprompt);
-
+    String preprompt1 = "How many enemies do you want to play against?";
+    TextBox(29, 2, 60, 1, preprompt1);
+ 
+    
+    //Main loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
 
+      if (input.equals("1")){
+        enemies.add(new Boss());
+      }
+      if (input.equals("2")){
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+      }
+      if (input.equals("3")){
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+      }
       //example debug statment
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
       
+      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+      TextBox(29, 2, 60, 1, preprompt);
+
       //display event based on last turn's input
       if(partyTurn){
         String sTarget = input.substring(input.length() -1);
