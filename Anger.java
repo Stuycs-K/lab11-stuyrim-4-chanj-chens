@@ -5,6 +5,7 @@ public class Anger extends Adventurer{
   private String specialName = "EXPLODE!";
   private boolean debuff = false;
   private boolean buff = false;
+  private int maxHP = 30;
 
   public int getSpecial(){
     return rage;

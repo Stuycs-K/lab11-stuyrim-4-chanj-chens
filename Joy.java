@@ -65,7 +65,8 @@ public class Joy extends Adventurer{
   /*Restores 5 HP to other*/
   public String support(Adventurer other){
     int prevHP = other.getHP();
-    other.setHP(other.getHP() + 5);
+    if(prevHP + 5 > getmaxHP()) other.setHP(other.getmaxHP());
+    else other.setHP(other.getHP() + 5);
     return "Says encouraging words to "+other+" and restores their HP from "
     + prevHP +" to " + other.getHP();
   }
