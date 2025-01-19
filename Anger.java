@@ -5,6 +5,7 @@ public class Anger extends Adventurer{
   private String specialName = "EXPLODE!";
   private boolean debuff = false;
   private boolean buff = false;
+  private int maxHP = 35;
 
   public int getSpecial(){
     return rage;
@@ -20,14 +21,13 @@ public class Anger extends Adventurer{
   }
 
   public Anger(String name){
-    this(name, 30);
+    this(name, 35);
   }
 
   public Anger(){
     this("Anger");
   }
 
-  /*The next 8 methods are all required because they are abstract:*/
   public String getSpecialName(){
     return specialName;
   }
@@ -44,7 +44,6 @@ public class Anger extends Adventurer{
     return specialMax;
   }
 
-  /*Deal 4-10 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*6+2)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
@@ -71,18 +70,18 @@ public class Anger extends Adventurer{
     }
 
   }
-  /*Restores 5 special to other*/
   public String support(Adventurer other){
-    return "Gives a coffee to "+other+" and restores "
-    + other.restoreSpecial(5)+" "+other.getSpecialName();
+    other.buffOn();
+    return this + " gaslights "+other+" and makes thema angry!";
   }
-  /*Restores 6 special and 1 hp to self.*/
+
+
   public String support(){
     buffOn();
     return this+" gaslights himself into being angry, boosting damage!";
   }
   public String charge(){
-    setSpecial(getSpecial+3);
+    setSpecial(getSpecial()+3);
     return this + " is charging up his rage!";
   }
 }

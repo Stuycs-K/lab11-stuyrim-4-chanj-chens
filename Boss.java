@@ -1,8 +1,9 @@
 public class Boss extends Adventurer{
-
+  private boolean ult = false;
   private int veg;
   private String specialName = "EAT YOUR VEGETABLES!";
   private int specialMax = 10;
+  private int maxHP = 70;
   private String name;
   private boolean debuff = false;
   private boolean buff = false;
@@ -39,21 +40,21 @@ public class Boss extends Adventurer{
   }
 
   public Boss(String name, int hp){
-    this(name, hp, 3, 10);
+    this(name, 70, 3, 10);
   }
 
   public Boss(String name){
-    this(name, 30);
+    this(name, 70);
   }
 
   public Boss(){
     this(namegen());
   }
   public String attack(Adventurer other){
-    int damage = (int)(Math.random()*6+2)+2 + damageMod(buff,debuff);
+    int damage = (int)(Math.random()*6+13)+1 + damageMod(buff,debuff);
     other.applyDamage(damage);
     restoreSpecial(1);
-    return this + " throws "+ veggies[(int)Math.random()*9] + " at "+ other + " for " + damage + " points of damage.";
+    return this + " throws a "+ veggies[(int)Math.random()*9].toLowerCase() + " at "+ other + " for " + damage + " points of damage.";
   }
   /*This is an example of an improvement that you can make to allow
    * for more flexible targetting.
@@ -62,14 +63,31 @@ public class Boss extends Adventurer{
   //public abstract String support(ArrayList<Adventurer> others);
 
   //heal or buff the target adventurer
-  public  String support(Adventurer other);
+  public String support(Adventurer other){
+    return "Boss cannot heal!";
+  }
 
   //heal or buff self
-  public String support();
+  public String support(){
+    buffOn();
+    debuffOff();
+    restoreSpecial(5);
+    if(getHP() + 12 > maxHP)
+      setHP(maxHP);
+    else
+      setHP(getHP() + 12);
+    return this + " eats some " +  veggies[(int)Math.random()*9].toLowerCase() + " and gains 12 HP!";
+  }
 
   //hurt or hinder the target adventurer, consume some special resource
-  public String special(Adventurer other);
-
+  public String special(Adventurer other){
+    if(ult == false){
+      attack(other);
+    }
+    int damage = (int)(Math.random()*6) + damageMod(buff,debuff) + getSpecial() * 4;
+    setSpecial(0);
+    return this + " hurls " + veggies[(int)Math.random()*9].toLowerCase() + " at "+ other + " for " + damage + " points of damage. EAT YOUR VEGETABLES!";
+  }
   /*
   standard methods
   */

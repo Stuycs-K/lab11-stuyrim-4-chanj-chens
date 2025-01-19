@@ -2,6 +2,7 @@ public class Joy extends Adventurer{
   int optimism, optimismMax;
   private boolean buff = false;
   private boolean debuff = false;
+  private int maxHP = 22;
 
   /*the other constructors ultimately call the constructor
   *with all parameters.*/
@@ -13,7 +14,7 @@ public class Joy extends Adventurer{
   }
 
   public Joy(String name){
-    this(name,20);
+    this(name,22);
   }
 
   public Joy(){
@@ -40,7 +41,7 @@ public class Joy extends Adventurer{
     return optimismMax;
   }
 
-  /*Deal 2-7 damage to opponent, restores 2 caffeine*/
+ 
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
@@ -49,9 +50,11 @@ public class Joy extends Adventurer{
     " points of damage.";
   }
 
-  /*Restores teammate's special by 5 and reduces optimism by
-  */
+
   public String special(Adventurer other){
+    if(other.getHP() == 0){
+      return "This guy is dead bud, you just wasted a turn";
+    }
     if(getSpecial() >= 2){
       this.setSpecial(this.getSpecial() - 2);
       return "Gives a Pep Talk to "+other+" and restores "
@@ -65,7 +68,8 @@ public class Joy extends Adventurer{
   /*Restores 5 HP to other*/
   public String support(Adventurer other){
     int prevHP = other.getHP();
-    other.setHP(other.getHP() + 5);
+    if(prevHP + 5 > getmaxHP()) other.setHP(other.getmaxHP());
+    else other.setHP(other.getHP() + 5);
     return "Says encouraging words to "+other+" and restores their HP from "
     + prevHP +" to " + other.getHP();
   }
