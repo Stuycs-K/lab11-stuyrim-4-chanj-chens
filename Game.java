@@ -223,27 +223,33 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    // ArrayList<Adventurer>enemies1 = new ArrayList<Adventurer>();
-    // enemies1.add(new Boss());
-    // ArrayList<Adventurer>enemies2 = new ArrayList<Adventurer>();
-    // enemies2.add(createRandomAdventurer());
-    // enemies2.add(createRandomAdventurer());
-    // ArrayList<Adventurer>enemies3 = new ArrayList<Adventurer>();
-    // enemies3.add(createRandomAdventurer());
-    // enemies3.add(createRandomAdventurer());
-    // enemies3.add(createRandomAdventurer());
-    
-    // int enemyNum = (int)(Math.random() *3);
-    //   if (enemyNum == 0){
-    //     enemies = enemies1;
-    //   }
-    //   if (enemyNum == 1){
-    //     enemies = enemies2;
-    //   }
-    //   if (enemyNum == 2){
-    //     enemies = enemies3;
-    //   }
 
+    int enemyNum = (int)(Math.random() *3);
+      if (enemyNum == 0){
+        enemies.add(new Boss());
+      }
+      if (enemyNum == 1){
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+      }
+      if (enemyNum == 2){
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer());
+      }
+      
+    // if (input.equals("1")){
+    //   enemies.add(new Boss());
+    // }
+    // if (input.equals("2")){
+    //   enemies.add(createRandomAdventurer());
+    //   enemies.add(createRandomAdventurer());
+    // }
+    // if (input.equals("3")){
+    //   enemies.add(createRandomAdventurer());
+    //   enemies.add(createRandomAdventurer());
+    //   enemies.add(createRandomAdventurer());
+    // }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
@@ -270,37 +276,21 @@ public class Game{
 
     //Main loop
 
-    String preprompt1 = "How many enemies do you want to play against?";
-    TextBox(29, 2, 60, 1, preprompt1);
+    // String preprompt1 = "How many enemies do you want to play against?";
+    // TextBox(29, 2, 60, 1, preprompt1);
 
     //display this prompt at the start of the game.
+
+    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    TextBox(29, 2, 60, 1, preprompt);
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
 
-      if (input.equals("1")){
-        enemies.add(new Boss());
-      }
-      if (input.equals("2")){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-      }
-      if (input.equals("3")){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-      }
       //example debug statment
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
-
-      //System.out.println(input);
-      // String preprompt2 = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-      // TextBox(29, 2, 60, 1, preprompt2);
       
-      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-      TextBox(29, 2, 60, 1, preprompt);
-
       //display event based on last turn's input
       if(partyTurn){
         String sTarget = input.substring(input.length() -1);
