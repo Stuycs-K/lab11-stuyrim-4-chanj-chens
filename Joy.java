@@ -41,7 +41,7 @@ public class Joy extends Adventurer{
     return optimismMax;
   }
 
-  /*Deal 2-7 damage to opponent, restores 2 caffeine*/
+ 
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*3)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
@@ -50,9 +50,11 @@ public class Joy extends Adventurer{
     " points of damage.";
   }
 
-  /*Restores teammate's special by 5 and reduces optimism by
-  */
+
   public String special(Adventurer other){
+    if(other.getHP() == 0){
+      return "This guy is dead bud, you just wasted a turn";
+    }
     if(getSpecial() >= 2){
       this.setSpecial(this.getSpecial() - 2);
       return "Gives a Pep Talk to "+other+" and restores "
