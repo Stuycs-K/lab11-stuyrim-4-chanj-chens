@@ -1,5 +1,5 @@
 public class Boss extends Adventurer{
-
+  private boolean ult = false;
   private int veg;
   private String specialName = "EAT YOUR VEGETABLES!";
   private int specialMax = 10;
@@ -81,6 +81,9 @@ public class Boss extends Adventurer{
 
   //hurt or hinder the target adventurer, consume some special resource
   public String special(Adventurer other){
+    if(ult == false){
+      attack(other);
+    }
     int damage = (int)(Math.random()*6) + damageMod(buff,debuff) + getSpecial() * 4;
     setSpecial(0);
     return this + " hurls " + veggies[(int)Math.random()*9].toLowerCase() + " at "+ other + " for " + damage + " points of damage. EAT YOUR VEGETABLES!";
