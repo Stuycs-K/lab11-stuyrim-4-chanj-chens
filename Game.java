@@ -62,7 +62,7 @@ public class Game{
     int pos = 0;
     int r = row;
     while (text.length()>0){
-      drawText("" + text.length(),5, 5);
+      //drawText("" + text.length(),5, 5);
       if (text.length() < width){
         drawText(text,r, col);
         for (int i = text.length(); i <width; i++){
@@ -86,7 +86,17 @@ public class Game{
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
-      return new CodeWarrior("Bob"+(int)(Math.random()*100));
+      int choicePlayer = (int)(Math.random() *3);
+      if (choicePlayer == 0){
+        return new CodeWarrior();
+      }
+      if (choicePlayer == 1){
+        return new Anger();
+      }
+      if (choicePlayer == 2){
+        return new Joy();
+      }
+      return null;
     }
 
     /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
@@ -102,8 +112,18 @@ public class Game{
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
-        for (Adventurer adventurer : party) {
-          System.out.println(adventurer);
+        for (int i = 0; i < 3; i++){
+          for (int j = 0; j < 3; j++){
+            if (i==0){
+              TextBox(startRow, 9+ j*(80/3), 80/3, 1, party.get(j).getName());
+            }
+            if (i==1){
+              TextBox(startRow + 1, 9 + j*(80/3), 80/3, 1, "HP: " + party.get(j).getHP());
+            }
+            if (i==2){
+              TextBox(startRow + 2, 9 + j*(80/3), 80/3, 1, party.get(j).getSpecialName() + ": " + party.get(j).getSpecial());
+            }
+          }
         }
       /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
@@ -189,7 +209,7 @@ public class Game{
     enemies.add(new CodeWarrior("tempEnemy1"));
     enemies.add(new CodeWarrior("tempEnemy2"));
     enemies.add(new CodeWarrior("tempEnemy3"));
-    drawParty(enemies, 0);
+    drawParty(enemies, 3);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
@@ -200,7 +220,7 @@ public class Game{
     party.add(new CodeWarrior());
     party.add(new CodeWarrior("Relish"));
     party.add(new CodeWarrior("Psyduck",20, "Worrying++"));
-    drawParty(party, 0);
+    drawParty(party, 25);
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
@@ -245,7 +265,7 @@ public class Game{
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          System.out.println(party.get(whichPlayer).special(enemies.get(target)));
+          TextBox(24,2,40,5,(party.get(whichPlayer).special(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -253,7 +273,7 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          System.out.println(party.get(whichPlayer).support(enemies.get(target)));
+          TextBox(24,2,40,5,(party.get(whichPlayer).support(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
 
