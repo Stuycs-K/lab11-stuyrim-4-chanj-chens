@@ -121,7 +121,7 @@ public class Game{
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
         for (int i = 0; i < 3; i++){
-          for (int j = 0; j < 3; j++){
+          for (int j = 0; j < party.size(); j++){
             if (i==0){
               TextBox(startRow, 9+ j*(80/3), 80/3 -3, 1, party.get(j).getName());
             }
