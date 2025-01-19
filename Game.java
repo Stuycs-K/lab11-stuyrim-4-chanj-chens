@@ -1,4 +1,6 @@
 import java.util.*;
+
+import javax.swing.text.PlainDocument;
 public class Game{
   private static final int WIDTH = 80;
   private static final int HEIGHT = 30;
@@ -58,16 +60,21 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(row,col);
     int pos = 0;
-    for (int r=0; r < height; r++){
-      if (text.length() <= width){
+    int r = row;
+    while (text.length()>0){
+      drawText("" + text.length(),5, 5);
+      if (text.length() < width){
         drawText(text,r, col);
-        for (int i = text.length(); i <=width; i++){
+        for (int i = text.length(); i <width; i++){
           drawText(" ", r, col + text.length() + i);
         }
+        text = "";
       }
       else{
-        drawText(text.substring(0,width+1),row, col);
-        text = text.substring(width+1);
+        
+        drawText(text.substring(0,width),r, col);
+        text = text.substring(width);
+        r++;
       }
     }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -171,6 +178,7 @@ public class Game{
     Text.hideCursor();
     Text.clear();
 
+    //TextBox(24,3,10,2,"thisis just a test im trying to write as long as posisble");
 
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1-3 enemies to it.
@@ -218,7 +226,7 @@ public class Game{
       input = userInput(in);
 
       //example debug statment
-      TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
+      //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
 
       //display event based on last turn's input
       if(partyTurn){
@@ -232,7 +240,7 @@ public class Game{
         if(input.startsWith("attack") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-          System.out.println(party.get(whichPlayer).attack(enemies.get(target)));
+          TextBox(24,2,40,5,(party.get(whichPlayer).attack(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
