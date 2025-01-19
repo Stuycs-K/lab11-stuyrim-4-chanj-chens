@@ -23,6 +23,14 @@ public class Game{
           Text.go(30,i);
             System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
         }
+        for (int i = 1; i <= WIDTH; i++){
+          Text.go(7,i);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
+        for (int i = 1; i <= WIDTH; i++){
+          Text.go(23,i);
+            System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
+        }
         for (int i = 1; i <= HEIGHT; i++){
           Text.go(i,1);
             System.out.print(Text.colorize("_", BORDER_BACKGROUND));;
@@ -115,13 +123,13 @@ public class Game{
         for (int i = 0; i < 3; i++){
           for (int j = 0; j < 3; j++){
             if (i==0){
-              TextBox(startRow, 9+ j*(80/3), 80/3, 1, party.get(j).getName());
+              TextBox(startRow, 9+ j*(80/3), 80/3 -3, 1, party.get(j).getName());
             }
             if (i==1){
-              TextBox(startRow + 1, 9 + j*(80/3), 80/3, 1, "HP: " + party.get(j).getHP());
+              TextBox(startRow + 1, 9 + j*(80/3), 80/3 -3, 1, "HP: " + colorByPercent(party.get(j).getHP(),party.get(j).getmaxHP()));
             }
             if (i==2){
-              TextBox(startRow + 2, 9 + j*(80/3), 80/3, 1, party.get(j).getSpecialName() + ": " + party.get(j).getSpecial());
+              TextBox(startRow + 2, 9 + j*(80/3), 80/3 -3, 1, party.get(j).getSpecialName() + ": " + party.get(j).getSpecial());
             }
           }
         }
@@ -134,7 +142,13 @@ public class Game{
     String output = String.format("%2s", hp+"")+"/"+String.format("%2s", maxHP+"");
     //COLORIZE THE OUTPUT IF HIGH/LOW:
     // under 25% : red
+    if (((double)hp/maxHP) < .25){
+      return Text.colorize(output, Text.RED); 
+    }
     // under 75% : yellow
+    if (((double)hp/maxHP) < .75){
+      return Text.colorize(output, Text.YELLOW); 
+    }
     // otherwise : white
     return output;
   }
@@ -153,25 +167,28 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
-  public static void drawScreen(){
+  public static void drawScreen(ArrayList<Adventurer> party, ArrayList<Adventurer> enemies){
 
-    drawBackground();
+    
 
     //draw player party
-
+    drawParty(party, 25);
     //draw enemy party
+    drawParty(enemies, 3);
 
+    drawBackground();
+    Text.go(29, 2);
   }
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-
+      Text.go(29, 55);
       //show cursor
-
+      Text.showCursor();
       String input = in.nextLine();
 
       //clear the text that was written
-
+      Text.clear();
       return input;
   }
 
@@ -209,7 +226,7 @@ public class Game{
     enemies.add(new CodeWarrior("tempEnemy1"));
     enemies.add(new CodeWarrior("tempEnemy2"));
     enemies.add(new CodeWarrior("tempEnemy3"));
-    drawParty(enemies, 3);
+    
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
@@ -220,7 +237,7 @@ public class Game{
     party.add(new CodeWarrior());
     party.add(new CodeWarrior("Relish"));
     party.add(new CodeWarrior("Psyduck",20, "Worrying++"));
-    drawParty(party, 25);
+    
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;
@@ -232,13 +249,13 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party,enemies);//initial state.
 
     //Main loop
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-    drawText(preprompt,10,20);
+    TextBox(29, 2, 60, 1, preprompt);
 
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
@@ -260,12 +277,12 @@ public class Game{
         if(input.startsWith("attack") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-          TextBox(24,2,40,5,(party.get(whichPlayer).attack(enemies.get(target))));
+          TextBox(20,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(24,2,40,5,(party.get(whichPlayer).special(enemies.get(target))));
+          TextBox(20,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -273,7 +290,7 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(24,2,40,5,(party.get(whichPlayer).support(enemies.get(target))));
+          TextBox(20,4,34,5,(party.get(whichPlayer).support(party.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
 
@@ -286,13 +303,15 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/quit";
-          drawText(prompt,10+whichPlayer,20); //temp
+          TextBox(29, 2, 55, 1, prompt);
+          
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
-          drawText(prompt,14,20);
+          TextBox(29, 2, 55, 1, prompt);
+          
           partyTurn = false;//temp
           whichOpponent = 0;
         }
@@ -307,20 +326,20 @@ public class Game{
         int choiceAction = (int)(Math.random() *3);
         int choicePlayer = (int)(Math.random() *3);
         if (choiceAction == 0){
-          drawText(enemies.get(whichOpponent).attack(enemies.get(choicePlayer)),15,2);
+          TextBox(20,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
         }
         if (choiceAction == 1){
-          drawText(enemies.get(whichOpponent).special(enemies.get(choicePlayer)),16,2);
+          TextBox(20,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
         }
         if (choiceAction == 2){
-          drawText(enemies.get(whichOpponent).support(lowestHP(enemies)),17,2);
+          TextBox(20,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
-
+        TextBox(29, 2, 55, 1, prompt);
         whichOpponent++;
 
       }//end of one enemy.
@@ -337,7 +356,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party,enemies);
 
 
     }//end of main game loop
