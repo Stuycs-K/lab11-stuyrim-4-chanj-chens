@@ -29,5 +29,15 @@ public class Anxiety extends Adventurer{
       public String getSpecialName(){
         return specialName;
       }
+      public void setSpecial(int n){
+        if(n >= getSpecialMax()){
+          this.neg = getSpecialMax();
+        }
+        neg = n;
+      }
+    
+      public int getSpecialMax(){
+        return specialMax;
+      }
     
 }
