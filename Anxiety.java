@@ -39,5 +39,18 @@ public class Anxiety extends Adventurer{
       public int getSpecialMax(){
         return specialMax;
       }
+
+      public String attack(Adventurer other){
+        int damage = (int)(Math.random()*2+2)+2 + damageMod(buff,debuff);
+        other.applyDamage(damage);
+        restoreSpecial(1);
+        return this + " yells at "+ other + ", dealing " + damage + " HP!";
+      }
+
+      public String special(Adventurer other){
+          setSpecial(0);
+          other.debuffOn();
+          return this + " brings the mood down..." + other + "'s damage decreased!";
+        }
     
-}
+      }
