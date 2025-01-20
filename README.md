@@ -31,9 +31,8 @@ Support herself: can restore optimism by 3 and heal herself by 3 hp<br/>
 HP: 35 <br/>
 Punch -  8 damage <br/>
 Explode (Special) - Does 3 damage per anger consumed, consumes all anger meter (at least 5), consumes 5 HP per missing anger meter + 0-5 damage <br/>
-Charge: gain 3 anger meter <br/>
 Resource - Anger Meter, max 10, charges 1 per attack, starts at 0 <br/>
-Support : Can buff allies to deal extra damage <br/>
+Support : Can buff allies to deal extra damage , or himself<br/>
 <br/>
 
 <ins>***Anxiety***                                                                                                                                              </ins> <br/>
@@ -41,5 +40,5 @@ HP: 21 <br/>
 Demotivate (reduces opponent’s attack ability by 3 damage for 2 turns), consumes 2 negative energy <br/>
 Panic Attack  - 2-5 damage <br/>
 Resource : negative energy, starts at 5,  gain 1 per turn passively <br/>
-Support: heals other by 1 hp<br/>
+Support: heals other by 1 hp, or self<br/>
 <br/>
