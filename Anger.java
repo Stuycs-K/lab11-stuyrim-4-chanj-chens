@@ -78,10 +78,7 @@ public class Anger extends Adventurer{
 
   public String support(){
     buffOn();
-    return this+" gaslights himself into being angry, boosting damage!";
-  }
-  public String charge(){
     setSpecial(getSpecial()+3);
-    return this + " is charging up his rage!";
+    return this+" gaslights himself into being angry, boosting damage and restoring 3 rage!";
   }
 }
