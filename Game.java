@@ -336,7 +336,7 @@ public class Game{
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/support/quit";
           TextBox(29, 2, 76, 1, prompt);
-          startRow++;
+          startRow = startRow + 3;
           
 
         }else{
@@ -351,7 +351,7 @@ public class Game{
         //done with one party member
       }else{
         //not the party turn!
-
+        
 
         //enemy attacks a randomly chosen person with a randomly chosen attack.z`
         //Enemy action choices go here!
@@ -359,13 +359,13 @@ public class Game{
         int choiceAction = (int)(Math.random() *3);
         int choicePlayer = (int)(Math.random() *3);
         if (choiceAction == 0){
-          TextBox(9,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
         }
         if (choiceAction == 1){
-          TextBox(9,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
         }
         if (choiceAction == 2){
-          TextBox(9,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -374,10 +374,10 @@ public class Game{
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 76, 1, prompt);
-        input = userInput(in); //this clears all the text on the screen :(
-        //drawScreen(party,enemies);
-        //System.out.println("help" + whichOpponent + enemies.size());
+        //input = userInput(in);
+        startRow +=3;
         whichOpponent++;
+        
       }//end of one enemy.
       
       //modify this if statement.
@@ -388,6 +388,7 @@ public class Game{
         whichOpponent = 0;
         turn++;
         partyTurn=true;
+        startRow = 9;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
         TextBox(29, 2, 76, 1, prompt);
