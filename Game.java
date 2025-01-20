@@ -70,7 +70,6 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(row,col);
-    int pos = 0;
     int r = row;
     while (text.length()>0){
       //drawText("" + text.length(),5, 5);
@@ -185,7 +184,7 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(29, 55);
+      Text.go(29, 60);
       //show cursor
       Text.showCursor();
       String input = in.nextLine();
@@ -193,6 +192,7 @@ public class Game{
       //clear the text that was written
       Text.clear();
       return input;
+      
   }
 
   public static void quit(){
@@ -274,9 +274,10 @@ public class Game{
 
     drawScreen(party, enemies);
 
-    String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/support/quit";
     TextBox(29, 2, 60, 1, preprompt);
 
+    
     //Main loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -294,7 +295,7 @@ public class Game{
         }
         //Process user input for the last Adventurer:
         //attack variables would need to check anger variable
-        if(input.startsWith("attack") || input.startsWith("a")){
+        if(input.startsWith("attack ") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
           TextBox(9,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
@@ -306,7 +307,7 @@ public class Game{
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
-        else if(input.startsWith("su ") || input.startsWith("support ")){
+        else if(input.startsWith("su ") || input.startsWith("support")){
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -330,7 +331,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/support/quit";
           TextBox(29, 2, 55, 1, prompt);
           
 
@@ -368,22 +369,20 @@ public class Game{
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 55, 1, prompt);
-        input = userInput(in);
-        drawScreen(party, enemies);
+        input = userInput(in); //this clears all the text on the screen :(
+        //drawScreen(party,enemies);
         //System.out.println("help" + whichOpponent + enemies.size());
         whichOpponent++;
       }//end of one enemy.
- 
       
       //modify this if statement.
+      //THIS BLOCK IS TO END THE ENEMY TURN
+      //It only triggers after the last enemy goes.
       if(!partyTurn && whichOpponent >= enemies.size()){
         whichPlayer = 0;
         whichOpponent = 0;
         turn++;
         partyTurn=true;
-        //THIS BLOCK IS TO END THE ENEMY TURN
-        //It only triggers after the last enemy goes.
-        System.out.println("gooo");
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
         TextBox(29, 2, 55, 1, prompt);
