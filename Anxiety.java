@@ -52,5 +52,7 @@ public class Anxiety extends Adventurer{
           other.debuffOn();
           return this + " brings the mood down..." + other + "'s damage decreased!";
         }
-    
+    public String support(Adventurer other){
+        other.setHP(other.getHP() + 1);
       }
+}
