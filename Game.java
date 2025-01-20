@@ -337,7 +337,6 @@ public class Game{
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
           TextBox(29, 2, 55, 1, prompt);
-          
           partyTurn = false;//temp
           whichOpponent = 0;
         }
@@ -363,30 +362,29 @@ public class Game{
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
+        
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 55, 1, prompt);
+        input = userInput(in);
+        drawScreen(party, enemies);
+        //System.out.println("help" + whichOpponent + enemies.size());
         whichOpponent++;
-        System.out.println("help");
-
       }//end of one enemy.
  
+      
       //modify this if statement.
-      if(!partyTurn || whichOpponent >= enemies.size()){
-        try{
-          whichPlayer = 0;
-          whichOpponent = 0;
-          turn++;
-          partyTurn=true;
-        }
-        catch(Exception e){
-          System.out.println("apt");
-        }
+      if(!partyTurn && whichOpponent >= enemies.size()){
+        whichPlayer = 0;
+        whichOpponent = 0;
+        turn++;
+        partyTurn=true;
         //THIS BLOCK IS TO END THE ENEMY TURN
         //It only triggers after the last enemy goes.
-        System.out.println("help");
+        System.out.println("gooo");
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        TextBox(29, 2, 55, 1, prompt);
       }
 
       //display the updated screen after input has been processed.
