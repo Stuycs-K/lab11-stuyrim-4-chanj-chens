@@ -222,35 +222,8 @@ public class Game{
     //Make an ArrayList of Adventurers and add 1-3 enemies to it.
     //If only 1 enemy is added it should be the boss class.
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
-    ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-
-    // int enemyNum = (int)(Math.random() *3);
-    //   if (enemyNum == 0){
-    //     enemies.add(new Boss());
-    //   }
-    //   if (enemyNum == 1){
-    //     enemies.add(createRandomAdventurer());
-    //     enemies.add(createRandomAdventurer());
-    //   }
-    //   if (enemyNum == 2){
-    //     enemies.add(createRandomAdventurer());
-    //     enemies.add(createRandomAdventurer());
-    //     enemies.add(createRandomAdventurer());
-    //   }
-      
-    // if (input.equals("1")){
-    //   enemies.add(new Boss());
-    // }
-    // if (input.equals("2")){
-    //   enemies.add(createRandomAdventurer());
-    //   enemies.add(createRandomAdventurer());
-    // }
-    // if (input.equals("3")){
-    //   enemies.add(createRandomAdventurer());
-    //   enemies.add(createRandomAdventurer());
-    //   enemies.add(createRandomAdventurer());
-    // }
+    ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
@@ -296,10 +269,10 @@ public class Game{
       }
       
     }
-    
+
     drawScreen(party, enemies);
 
-    String preprompt = "Enter command for "+party.get(whichPlayer)+ whichPlayer + ": attack/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/quit";
     TextBox(29, 2, 60, 1, preprompt);
 
     //Main loop
@@ -322,12 +295,12 @@ public class Game{
         if(input.startsWith("attack") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-          TextBox(20,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
+          TextBox(9,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(20,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
+          TextBox(9,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -335,9 +308,17 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(20,4,34,5,(party.get(whichPlayer).support(party.get(target))));
+          TextBox(9,4,34,5,(party.get(whichPlayer).support(party.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
+        // else if(input.startsWith("ch ") || input.startsWith("charge ")){
+        //   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+        //   if (party.get(whichPlayer) instanceof Anger){
+        //     TextBox(9,4,34,5,(party.get(whichPlayer).charge()));
+        //   }
+          
+        //   /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+        // }
 
         //You should decide when you want to re-ask for user input
         //If no errors:
@@ -371,13 +352,13 @@ public class Game{
         int choiceAction = (int)(Math.random() *3);
         int choicePlayer = (int)(Math.random() *3);
         if (choiceAction == 0){
-          TextBox(20,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
+          TextBox(9,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
         }
         if (choiceAction == 1){
-          TextBox(20,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
+          TextBox(9,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
         }
         if (choiceAction == 2){
-          TextBox(20,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
+          TextBox(9,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -386,16 +367,24 @@ public class Game{
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 55, 1, prompt);
         whichOpponent++;
+        System.out.println("help");
 
       }//end of one enemy.
-
+ 
       //modify this if statement.
-      if(!partyTurn && whichOpponent >= enemies.size()){
+      if(!partyTurn || whichOpponent >= enemies.size()){
+        try{
+          whichPlayer = 0;
+          whichOpponent = 0;
+          turn++;
+          partyTurn=true;
+        }
+        catch(Exception e){
+          System.out.println("apt");
+        }
         //THIS BLOCK IS TO END THE ENEMY TURN
         //It only triggers after the last enemy goes.
-        whichPlayer = 0;
-        turn++;
-        partyTurn=true;
+        System.out.println("help");
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
       }

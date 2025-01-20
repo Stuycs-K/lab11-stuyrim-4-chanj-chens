@@ -49,7 +49,7 @@ public class Anger extends Adventurer{
     other.applyDamage(damage);
     restoreSpecial(1);
     return this + " punches "+ other + ", burning "+ other + " for " + damage +
-    " points of damage. \nRage UP! (" + getSpecial() + ")";
+    " points of damage. Rage UP! (" + getSpecial() + ")";
   }
 
 
@@ -65,8 +65,7 @@ public class Anger extends Adventurer{
       setSpecial(0);
       setHP(getHP() - selfdamage);
       other.applyDamage(damage);
-      return "Not enough rage to use \"EXPLODE!\". Consumed " + selfdamage + " health!" +
-    "\n" + this + " EXPLODES and deals "+ damage + " to " + other + "!";
+      return "Not enough rage to use \"EXPLODE!\". Consumed " + selfdamage + " health!" + this + " EXPLODES and deals "+ damage + " to " + other + "!";
     }
 
   }
