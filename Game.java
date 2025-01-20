@@ -8,9 +8,11 @@ public class Game{
   private static final int BORDER_COLOR = Text.BLACK;
   private static final int BORDER_BACKGROUND = Text.WHITE + Text.BACKGROUND;
 
+
   public static void main(String[] args) {
     run();
   }
+
 
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
@@ -97,13 +99,13 @@ public class Game{
     public static Adventurer createRandomAdventurer(){
       int choicePlayer = (int)(Math.random() *3);
       if (choicePlayer == 0){
-        return new CodeWarrior();
+        return new Anxiety("Afraid");
       }
       if (choicePlayer == 1){
-        return new Anger();
+        return new Anger("Mad");
       }
       if (choicePlayer == 2){
-        return new Joy();
+        return new Joy("Happy");
       }
       return null;
     }
