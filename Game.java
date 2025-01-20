@@ -68,7 +68,6 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     Text.go(row,col);
-    int pos = 0;
     int r = row;
     while (text.length()>0){
       //drawText("" + text.length(),5, 5);
@@ -97,7 +96,7 @@ public class Game{
     public static Adventurer createRandomAdventurer(){
       int choicePlayer = (int)(Math.random() *3);
       if (choicePlayer == 0){
-        return new CodeWarrior();
+        return new Anxiety();
       }
       if (choicePlayer == 1){
         return new Anger();
@@ -183,14 +182,13 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(29, 55);
+      Text.go(29, 60);
       //show cursor
       Text.showCursor();
       String input = in.nextLine();
 
       //clear the text that was written
       Text.clear();
-      drawBackground();
       return input;
       
   }
@@ -295,7 +293,7 @@ public class Game{
         }
         //Process user input for the last Adventurer:
         //attack variables would need to check anger variable
-        if(input.startsWith("attack") || input.startsWith("a")){
+        if(input.startsWith("attack ") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
           TextBox(9,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
@@ -307,7 +305,7 @@ public class Game{
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
-        else if(input.startsWith("su ") || input.startsWith("support ")){
+        else if(input.startsWith("su ") || input.startsWith("support")){
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -370,6 +368,7 @@ public class Game{
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 55, 1, prompt);
         input = userInput(in); //this clears all the text on the screen :(
+        //drawScreen(party,enemies);
         //System.out.println("help" + whichOpponent + enemies.size());
         whichOpponent++;
       }//end of one enemy.
