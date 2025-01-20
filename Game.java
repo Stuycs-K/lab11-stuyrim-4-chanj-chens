@@ -190,7 +190,9 @@ public class Game{
 
       //clear the text that was written
       Text.clear();
+      drawBackground();
       return input;
+      
   }
 
   public static void quit(){
@@ -272,9 +274,10 @@ public class Game{
 
     drawScreen(party, enemies);
 
-    String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/quit";
+    String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/support/quit";
     TextBox(29, 2, 60, 1, preprompt);
 
+    
     //Main loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -328,7 +331,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/support/quit";
           TextBox(29, 2, 55, 1, prompt);
           
 
@@ -366,22 +369,19 @@ public class Game{
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 55, 1, prompt);
-        input = userInput(in);
-        drawScreen(party, enemies);
+        input = userInput(in); //this clears all the text on the screen :(
         //System.out.println("help" + whichOpponent + enemies.size());
         whichOpponent++;
       }//end of one enemy.
- 
       
       //modify this if statement.
+      //THIS BLOCK IS TO END THE ENEMY TURN
+      //It only triggers after the last enemy goes.
       if(!partyTurn && whichOpponent >= enemies.size()){
         whichPlayer = 0;
         whichOpponent = 0;
         turn++;
         partyTurn=true;
-        //THIS BLOCK IS TO END THE ENEMY TURN
-        //It only triggers after the last enemy goes.
-        System.out.println("gooo");
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
         TextBox(29, 2, 55, 1, prompt);
