@@ -74,7 +74,7 @@ public class Game{
       if (text.length() < width){
         drawText(text,r, col);
         for (int i = text.length(); i <width; i++){
-          drawText(" ", r, col + text.length() + i);
+          drawText(" ", r, col + i);
         }
         text = "";
       }
@@ -182,13 +182,14 @@ public class Game{
 
   public static String userInput(Scanner in){
       //Move cursor to prompt location
-      Text.go(29, 60);
+      
+      Text.go(29, 57);
       //show cursor
       Text.showCursor();
       String input = in.nextLine();
 
       //clear the text that was written
-      Text.clear();
+      //Text.clear();
       return input;
       
   }
@@ -273,9 +274,11 @@ public class Game{
     drawScreen(party, enemies);
 
     String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/support/quit";
-    TextBox(29, 2, 60, 1, preprompt);
+    TextBox(29, 2, 100, 1, preprompt);
 
-    
+    //scrolling
+    int startRow = 9;
+
     //Main loop
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -296,12 +299,12 @@ public class Game{
         if(input.startsWith("attack ") || input.startsWith("a")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
-          TextBox(9,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
+          TextBox(startRow,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(9,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
+          TextBox(startRow,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -309,7 +312,7 @@ public class Game{
           //"support 0" or "su 0" or "su 2" etc.
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          TextBox(9,4,34,5,(party.get(whichPlayer).support(party.get(target))));
+          TextBox(startRow,4,34,5,(party.get(whichPlayer).support(party.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         // else if(input.startsWith("ch ") || input.startsWith("charge ")){
@@ -330,16 +333,18 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/support/quit";
-          TextBox(29, 2, 55, 1, prompt);
+          TextBox(29, 2, 76, 1, prompt);
+          startRow++;
           
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
-          TextBox(29, 2, 55, 1, prompt);
+          TextBox(29, 2, 76, 1, prompt);
           partyTurn = false;//temp
           whichOpponent = 0;
+          startRow = 9;
         }
         //done with one party member
       }else{
@@ -366,7 +371,7 @@ public class Game{
         
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
-        TextBox(29, 2, 55, 1, prompt);
+        TextBox(29, 2, 76, 1, prompt);
         input = userInput(in); //this clears all the text on the screen :(
         //drawScreen(party,enemies);
         //System.out.println("help" + whichOpponent + enemies.size());
@@ -383,7 +388,7 @@ public class Game{
         partyTurn=true;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-        TextBox(29, 2, 55, 1, prompt);
+        TextBox(29, 2, 76, 1, prompt);
       }
 
       //display the updated screen after input has been processed.
