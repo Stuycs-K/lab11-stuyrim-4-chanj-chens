@@ -419,8 +419,6 @@ public class Game{
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         TextBox(29, 2, 78, 1, prompt);
       }
-
-      //display the updated screen after input has been processed.
       for(Adventurer i : enemies){
         if(i.getHP() <= 0){
           enemies.remove(i);
@@ -431,6 +429,7 @@ public class Game{
           party.remove(x);
         }
       }
+      //display the updated screen after input has been processed.  
       drawScreen(party,enemies);
       if(enemies.size() == 0){
         endScreenDisplay(true);
