@@ -95,19 +95,20 @@ public class Game{
 
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
-    public static Adventurer createRandomAdventurer(){
+    public static Adventurer createRandomAdventurer(String name){
       int choicePlayer = (int)(Math.random() *3);
       if (choicePlayer == 0){
-        return new Anxiety("Afraid");
+        return new Anxiety(name);
       }
       if (choicePlayer == 1){
-        return new Anger("Mad");
+        return new Anger(name);
       }
       if (choicePlayer == 2){
-        return new Joy("Happy");
+        return new Joy(name);
       }
       return null;
     }
+    
 
     /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
     *Should include Name HP and Special on 3 separate lines.
@@ -185,7 +186,7 @@ public class Game{
   public static String userInput(Scanner in){
       //Move cursor to prompt location
       
-      Text.go(29, 57);
+      Text.go(29, 65);
       //show cursor
       Text.showCursor();
       String input = in.nextLine();
@@ -234,9 +235,9 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    party.add(createRandomAdventurer());
-    party.add(createRandomAdventurer());
-    party.add(createRandomAdventurer());
+    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Mr. K"));
     
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -262,13 +263,13 @@ public class Game{
         enemies.add(new Boss());
       }
       if (input.equals("2")){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
       }
       if (input.equals("3")){
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
-        enemies.add(createRandomAdventurer());
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
       }
       
     }
@@ -276,7 +277,7 @@ public class Game{
     drawScreen(party, enemies);
 
     String preprompt = "Enter command for "+party.get(whichPlayer) + ": attack/special/support/quit";
-    TextBox(29, 2, 100, 1, preprompt);
+    TextBox(29, 2, 78, 1, preprompt);
 
     //scrolling
     int startRow = 9;
@@ -335,7 +336,7 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+ party.get(whichPlayer)+": attack/special/support/quit";
-          TextBox(29, 2, 76, 1, prompt);
+          TextBox(29, 2, 78, 1, prompt);
           startRow = startRow + 3;
           
 
@@ -343,7 +344,7 @@ public class Game{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
-          TextBox(29, 2, 76, 1, prompt);
+          TextBox(29, 2, 78, 1, prompt);
           partyTurn = false;//temp
           whichOpponent = 0;
           startRow = 9;
@@ -373,7 +374,7 @@ public class Game{
         
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
-        TextBox(29, 2, 76, 1, prompt);
+        TextBox(29, 2, 78, 1, prompt);
         //input = userInput(in);
         startRow +=3;
         whichOpponent++;
@@ -389,9 +390,11 @@ public class Game{
         turn++;
         partyTurn=true;
         startRow = 9;
+        Text.clear();
+        drawScreen(party,enemies);
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-        TextBox(29, 2, 76, 1, prompt);
+        TextBox(29, 2, 78, 1, prompt);
       }
 
       //display the updated screen after input has been processed.
