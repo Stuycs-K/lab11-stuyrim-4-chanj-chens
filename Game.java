@@ -164,6 +164,18 @@ public class Game{
       return false;
     }
   }
+  public static void endScreenDisplay(boolean win){
+    Text.clear();
+    drawBackground();
+    String display;
+    if(win){
+      display = "VICTORY!";
+    }
+    else{
+      display = "DEFEAT!";
+    }
+    TextBox(11,12,50,5,display);
+  }
 
 
 
