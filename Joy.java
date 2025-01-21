@@ -70,14 +70,14 @@ public class Joy extends Adventurer{
     int prevHP = other.getHP();
     if(prevHP + 5 > getmaxHP()) other.setHP(other.getmaxHP());
     else other.setHP(other.getHP() + 5);
-    return "Says encouraging words to "+other+" and restores their HP from "
+    return this + "Says encouraging words to "+other+" and restores their HP from "
     + prevHP +" to " + other.getHP();
   }
   /*Restores 3 special and 1 hp to self.*/
   public String support(){
     int hp = 3;
     setHP(getHP()+hp);
-    return this+" watches cat videos to restores "+restoreSpecial(3)+" "
+    return this +" watches cat videos to restores "+restoreSpecial(3)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
 }
