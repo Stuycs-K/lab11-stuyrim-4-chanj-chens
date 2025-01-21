@@ -19,7 +19,7 @@ public class Anxiety extends Adventurer{
       }
     
       public Anxiety(String name){
-        this(name, 21);
+        this(name+ "'s Anxiety", 21);
       }
     
       public Anxiety(){

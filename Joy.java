@@ -14,7 +14,7 @@ public class Joy extends Adventurer{
   }
 
   public Joy(String name){
-    this(name,22);
+    this(name+ "'s Anger",22);
   }
 
   public Joy(){
