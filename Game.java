@@ -227,6 +227,15 @@ public class Game{
     return result;
   }
 
+  public static boolean validInput(String input){
+    return (input.startsWith("attack") || input.startsWith("a")
+          || input.startsWith("special") || input.startsWith("sp")
+          || input.startsWith("su") || input.startsWith("support")
+          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))
+          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))
+          );
+  }
+
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -247,9 +256,9 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    party.add(createRandomAdventurer("Mr. K"));
-    party.add(createRandomAdventurer("Mr. K"));
-    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Riley"));
+    party.add(createRandomAdventurer("Riley"));
+    party.add(createRandomAdventurer("Riley"));
     
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -275,13 +284,13 @@ public class Game{
         enemies.add(new Boss());
       }
       if (input.equals("2")){
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
       }
       if (input.equals("3")){
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
       }
       
     }

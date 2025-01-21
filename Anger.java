@@ -21,7 +21,7 @@ public class Anger extends Adventurer{
   }
 
   public Anger(String name){
-    this(name, 35);
+    this(name + "'s Anger", 35);
   }
 
   public Anger(){
