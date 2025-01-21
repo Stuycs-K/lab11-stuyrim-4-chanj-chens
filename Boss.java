@@ -12,7 +12,7 @@ public class Boss extends Adventurer{
     String[] names1 = {"Joe", "Bob", "Mr Kamuel Sonstantinovich", "Lebonbon", "Kanye East", "Barracks Oboma", "Bonald Trumpet", "Georgius Washingkilogram"};
     String[] names2 = {"Lone", "Big", "Old", "Chubby", "Evil", "Malicious", "Young", "Wise"};
     String[] names3 = {"Broccoli", "Cabbage", "Carrot", "Aspargus", "Spinach", "Radish", "Onion", "Brussel Sprout"};
-    return names1[(int) Math.random()*9] + " the " + names2[(int) Math.random()*9] + " " + names3[(int) Math.random()*9];
+    return names1[(int) (Math.random()*9)] + " the " + names2[(int) (Math.random()*9)] + " " + names3[(int) (Math.random()*9)];
   }
 
   //Accessor Methods
@@ -54,15 +54,9 @@ public class Boss extends Adventurer{
     int damage = (int)(Math.random()*6+13)+1 + damageMod(buff,debuff);
     other.applyDamage(damage);
     restoreSpecial(1);
-    return this + " throws a "+ veggies[(int)Math.random()*9].toLowerCase() + " at "+ other + " for " + damage + " points of damage.";
+    return this + " throws a "+ veggies[(int)(Math.random()*9)].toLowerCase() + " at "+ other + " for " + damage + " points of damage.";
   }
-  /*This is an example of an improvement that you can make to allow
-   * for more flexible targetting.
-   */
-  //heal or buff the party
-  //public abstract String support(ArrayList<Adventurer> others);
 
-  //heal or buff the target adventurer
   public String support(Adventurer other){
     return "Boss cannot heal!";
   }
@@ -76,20 +70,17 @@ public class Boss extends Adventurer{
       setHP(maxHP);
     else
       setHP(getHP() + 12);
-    return this + " eats some " +  veggies[(int)Math.random()*9].toLowerCase() + " and gains 12 HP!";
+    return this + " eats some " +  veggies[(int)(Math.random()*9)].toLowerCase() + " and gains 12 HP!";
   }
 
-  //hurt or hinder the target adventurer, consume some special resource
   public String special(Adventurer other){
     if(ult == false){
       attack(other);
     }
     int damage = (int)(Math.random()*6) + damageMod(buff,debuff) + getSpecial() * 4;
     setSpecial(0);
-    return this + " hurls " + veggies[(int)Math.random()*9].toLowerCase() + " at "+ other + " for " + damage + " points of damage. EAT YOUR VEGETABLES!";
+    return this + " hurls " + veggies[(int)(Math.random()*9)].toLowerCase() + " at "+ other + " for " + damage + " points of damage. EAT YOUR VEGETABLES!";
   }
-  /*
-  standard methods
-  */
+
 
 }
