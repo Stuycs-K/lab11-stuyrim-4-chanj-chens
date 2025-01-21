@@ -244,9 +244,9 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    party.add(createRandomAdventurer("Mr. K"));
-    party.add(createRandomAdventurer("Mr. K"));
-    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Riley"));
+    party.add(createRandomAdventurer("Riley"));
+    party.add(createRandomAdventurer("Riley"));
     
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -272,13 +272,13 @@ public class Game{
         enemies.add(new Boss());
       }
       if (input.equals("2")){
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
       }
       if (input.equals("3")){
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
-        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
+        enemies.add(createRandomAdventurer("AI"));
       }
       
     }
