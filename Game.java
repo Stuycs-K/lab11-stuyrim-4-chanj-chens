@@ -381,7 +381,7 @@ public class Game{
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
         int choiceAction = (int)(Math.random() *3);
-        int choicePlayer = (int)(Math.random() *3);
+        int choicePlayer = (int)(Math.random() *party.size());
         if (choiceAction == 0){
           TextBox(startRow,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
         }
@@ -419,16 +419,20 @@ public class Game{
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         TextBox(29, 2, 78, 1, prompt);
       }
-      for(Adventurer i : enemies){
-        if(i.getHP() <= 0){
+
+      for (int i = 0; i < enemies.size(); i++){
+        if(enemies.get(i).getHP() <= 0){
           enemies.remove(i);
+          i--;
         }
       }
-      for(Adventurer x : party){
-        if(x.getHP() <= 0){
-          party.remove(x);
+      for (int i = 0; i < party.size(); i++){
+        if(party.get(i).getHP() <= 0){
+          party.remove(i);
+          i--;
         }
       }
+
       //display the updated screen after input has been processed.  
       drawScreen(party,enemies);
       if(enemies.size() == 0){
