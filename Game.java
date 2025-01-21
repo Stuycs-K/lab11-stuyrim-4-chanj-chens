@@ -218,7 +218,9 @@ public class Game{
     return (input.startsWith("attack") || input.startsWith("a")
           || input.startsWith("special") || input.startsWith("sp")
           || input.startsWith("su") || input.startsWith("support")
-          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")));
+          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))
+          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))
+          );
   }
 
   public static void run(){
