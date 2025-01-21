@@ -122,6 +122,7 @@ public class Game{
 
       /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
       //YOUR CODE HERE
+
         for (int i = 0; i < 3; i++){
           for (int j = 0; j < party.size(); j++){
             if (i==0){
@@ -334,6 +335,14 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 
           TextBox(startRow,4,34,5,(party.get(whichPlayer).attack(enemies.get(target))));
+          for (int i = 0; i < enemies.size(); i++){
+            if(enemies.get(i).getHP() <= 0){
+              enemies.remove(i);
+              i--;
+              Text.clear();
+              drawScreen(party,enemies);
+            }
+          }
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         else if(input.startsWith("special") || input.startsWith("sp")){
@@ -368,9 +377,10 @@ public class Game{
           //Decide where to draw the following prompt:
           String prompt = "press enter to see monster's turn";
           TextBox(29, 2, 78, 1, prompt);
+          startRow = 9;
           partyTurn = false;//temp
           whichOpponent = 0;
-          startRow = 9;
+          
         }
         //done with one party member
       }else{
@@ -384,6 +394,14 @@ public class Game{
         int choicePlayer = (int)(Math.random() *party.size());
         if (choiceAction == 0){
           TextBox(startRow,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
+          for (int i = 0; i < party.size(); i++){
+            if(party.get(i).getHP() <= 0){
+              party.remove(i);
+              i--;
+              Text.clear();
+              drawScreen(party,enemies);
+            }
+          }
         }
         if (choiceAction == 1){
           TextBox(startRow,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
@@ -398,11 +416,14 @@ public class Game{
         //Decide where to draw the following prompt:
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 78, 1, prompt);
-        input = userInput(in);
+        //input = userInput(in);
         startRow +=4;
         whichOpponent++;
 
       }//end of one enemy.
+
+      
+      
 
       //modify this if statement.
       //THIS BLOCK IS TO END THE ENEMY TURN
@@ -418,19 +439,6 @@ public class Game{
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         TextBox(29, 2, 78, 1, prompt);
-      }
-
-      for (int i = 0; i < enemies.size(); i++){
-        if(enemies.get(i).getHP() <= 0){
-          enemies.remove(i);
-          i--;
-        }
-      }
-      for (int i = 0; i < party.size(); i++){
-        if(party.get(i).getHP() <= 0){
-          party.remove(i);
-          i--;
-        }
       }
 
       //display the updated screen after input has been processed.  

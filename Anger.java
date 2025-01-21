@@ -63,7 +63,7 @@ public class Anger extends Adventurer{
       int damage = 15 + (int)(Math.random()*5) + damageMod(buff,debuff);
       int selfdamage = 5 * (5-getSpecial());
       this.setSpecial(0);
-      this.setHP(getHP() - selfdamage);
+      this.applyDamage(selfdamage);
       other.applyDamage(damage);
       return "Not enough rage for \"EXPLODE!\". Consumed " + selfdamage + " health! " + this + " EXPLODES and deals "+ damage + " to " + other + "!";
     }
