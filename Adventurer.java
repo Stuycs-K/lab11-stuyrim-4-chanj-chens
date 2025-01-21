@@ -4,6 +4,7 @@ public abstract class Adventurer{
   private int HP,maxHP;
   private boolean buff;
   private boolean debuff;
+  public boolean live;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -129,5 +130,8 @@ public abstract class Adventurer{
       return -1 * (int) Math.random()*6;
     }
     return 0;
+  }
+  public void dead(){
+    live = false; 
   }
 }

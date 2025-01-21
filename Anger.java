@@ -2,7 +2,7 @@ import java.util.Random;
 public class Anger extends Adventurer{
   private int rage;
   private int specialMax = 10;
-  private String specialName = "EXPLODE!";
+  private String specialName = "rage";
   private boolean debuff = false;
   private boolean buff = false;
   private int maxHP = 35;
@@ -21,7 +21,7 @@ public class Anger extends Adventurer{
   }
 
   public Anger(String name){
-    this(name + "'s Anger", 35);
+    this(name, 35);
   }
 
   public Anger(){
