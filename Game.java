@@ -226,6 +226,30 @@ public class Game{
     return result;
   }
 
+  public static void clearActionlogs(){
+    for (int i = 9; i < 24; i ++){
+      for (int j = 2; j < 78; j ++){
+        Text.go(i, j);
+        System.out.print(" ");
+    }
+  }
+}
+
+public static void clearParties(){
+  for (int i = 2; i < 6; i ++){
+    for (int j = 2; j < 78; j ++){
+      Text.go(i, j);
+      System.out.print(" ");
+    }
+  }
+  for (int i = 24; i < 28; i ++){
+    for (int j = 2; j < 78; j ++){
+      Text.go(i, j);
+      System.out.print(" ");
+    }
+  }
+}
+
   public static boolean validInput(String input){
     if (input.startsWith("attack") || input.startsWith("a")
     || input.startsWith("special") || input.startsWith("sp")
@@ -267,6 +291,7 @@ public class Game{
     int whichPlayer = 0;
     int whichOpponent = 0;
     int turn = 0;
+    boolean clear = false;
     String input = "";//blank to get into the main loop.
     Scanner in = new Scanner(System.in);
     //Draw the window border
@@ -280,7 +305,7 @@ public class Game{
 
     while(!(input.equals("1") || input.equals("2") || input.equals("3") || input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       input = userInput(in);
-
+      
       if (input.equals("1")){
         enemies.add(new Boss());
       }
@@ -312,7 +337,7 @@ public class Game{
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
       input = userInput(in);
-
+      
       //example debug statment
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
 
@@ -339,8 +364,9 @@ public class Game{
             if(enemies.get(i).getHP() <= 0){
               enemies.remove(i);
               i--;
-              Text.clear();
+              clearParties();
               drawScreen(party,enemies);
+              break;
             }
           }
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -348,6 +374,23 @@ public class Game{
         else if(input.startsWith("special") || input.startsWith("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           TextBox(startRow,4,34,5,(party.get(whichPlayer).special(enemies.get(target))));
+          for (int i = 0; i < enemies.size(); i++){
+            if(enemies.get(i).getHP() <= 0){
+              enemies.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+              break;
+            }
+          }
+          for (int i = 0; i < party.size(); i++){
+            if(party.get(i).getHP() <= 0){
+              party.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+            }
+          }
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
         //this is how we do the others
@@ -356,6 +399,15 @@ public class Game{
           //assume the value that follows su  is an integer.
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           TextBox(startRow,4,34,5,(party.get(whichPlayer).support(party.get(target))));
+          for (int i = 0; i < enemies.size(); i++){
+            if(enemies.get(i).getHP() <= 0){
+              enemies.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+              break;
+            }
+          }
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
         }
 
@@ -398,16 +450,41 @@ public class Game{
             if(party.get(i).getHP() <= 0){
               party.remove(i);
               i--;
-              Text.clear();
+              clearParties();
               drawScreen(party,enemies);
             }
           }
         }
         if (choiceAction == 1){
           TextBox(startRow,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
+          for (int i = 0; i < party.size(); i++){
+            if(party.get(i).getHP() <= 0){
+              party.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+            }
+          }
+          for (int i = 0; i < enemies.size(); i++){
+            if(enemies.get(i).getHP() <= 0){
+              enemies.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+              break;
+            }
+          }
         }
         if (choiceAction == 2){
           TextBox(startRow,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
+          for (int i = 0; i < party.size(); i++){
+            if(party.get(i).getHP() <= 0){
+              party.remove(i);
+              i--;
+              clearParties();
+              drawScreen(party,enemies);
+            }
+          }
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -421,9 +498,6 @@ public class Game{
         whichOpponent++;
 
       }//end of one enemy.
-
-      
-      
 
       //modify this if statement.
       //THIS BLOCK IS TO END THE ENEMY TURN
@@ -439,6 +513,7 @@ public class Game{
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         TextBox(29, 2, 78, 1, prompt);
+        clear = true;
       }
 
       //display the updated screen after input has been processed.  

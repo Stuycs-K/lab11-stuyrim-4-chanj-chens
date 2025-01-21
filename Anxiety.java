@@ -54,7 +54,7 @@ public class Anxiety extends Adventurer{
         }
         public String support(Adventurer other){
             other.setHP(other.getHP() + 1);
-            return this + " heals " + other + " for 1hp. Whyuse Anxiety to heal?";
+            return this + " heals " + other + " for 1hp. Why use Anxiety to heal?";
           }
         public String support(){
             setHP(getHP()+1);
