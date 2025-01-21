@@ -383,13 +383,13 @@ public class Game{
         int choiceAction = (int)(Math.random() *3);
         int choicePlayer = (int)(Math.random() *3);
         if (choiceAction == 0){
-          TextBox(startRow,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)) + whichOpponent);
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).attack(party.get(choicePlayer)));
         }
         if (choiceAction == 1){
-          TextBox(startRow,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer))+ whichOpponent);
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).special(party.get(choicePlayer)));
         }
         if (choiceAction == 2){
-          TextBox(startRow,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies))+ whichOpponent);
+          TextBox(startRow,42,34,5,enemies.get(whichOpponent).support(lowestHP(enemies)));
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
