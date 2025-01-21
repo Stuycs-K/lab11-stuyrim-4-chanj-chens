@@ -166,7 +166,6 @@ public class Game{
   }
 
 
-
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
@@ -215,6 +214,13 @@ public class Game{
     return result;
   }
 
+  public static boolean validInput(String input){
+    return (input.startsWith("attack") || input.startsWith("a")
+          || input.startsWith("special") || input.startsWith("sp")
+          || input.startsWith("su") || input.startsWith("support")
+          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")));
+  }
+
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -256,7 +262,7 @@ public class Game{
     String preprompt1 = "How many enemies do you want to play against?";
       TextBox(29, 2, 60, 1, preprompt1);
 
-    while(!(input.equals("1") || input.equals("2") || input.equals("3"))){
+    while(!(input.equals("1") || input.equals("2") || input.equals("3") || input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       input = userInput(in);
 
       if (input.equals("1")){
@@ -295,7 +301,13 @@ public class Game{
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
 
       //display event based on last turn's input
+      
       if(partyTurn){
+        while (!validInput(input)){
+          String reprompt = "Invalid input. Type: attack/special/support/quit";
+          TextBox(29, 2, 78, 1, reprompt);
+          input = userInput(in);
+        }
         String sTarget = input.substring(input.length() -1);
         int target = 0;
         if (isNumeric(sTarget)){
@@ -321,10 +333,6 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           TextBox(startRow,4,34,5,(party.get(whichPlayer).support(party.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-        }
-        else{
-          String reprompt = "Invalid input. Type: attack/special/support/quit";
-            TextBox(29, 2, 78, 1, preprompt);
         }
         // else if(input.startsWith("ch ") || input.startsWith("charge ")){
         //   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -401,7 +409,7 @@ public class Game{
         Text.clear();
         drawScreen(party,enemies);
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
         TextBox(29, 2, 78, 1, prompt);
       }
 
