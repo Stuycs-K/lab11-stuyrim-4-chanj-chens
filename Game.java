@@ -254,24 +254,28 @@ public class Game{
     
     //display this prompt at the start of the game.
     String preprompt1 = "How many enemies do you want to play against?";
-    TextBox(29, 2, 60, 1, preprompt1);
- 
-    while(input.equals("")){
+      TextBox(29, 2, 60, 1, preprompt1);
+
+    while(!(input.equals("1") || input.equals("2") || input.equals("3"))){
       input = userInput(in);
 
       if (input.equals("1")){
         enemies.add(new Boss());
       }
-      if (input.equals("2")){
+      else if (input.equals("2")){
         enemies.add(createRandomAdventurer("AI"));
         enemies.add(createRandomAdventurer("AI"));
       }
-      if (input.equals("3")){
+      else if(input.equals("3")){
         enemies.add(createRandomAdventurer("AI"));
         enemies.add(createRandomAdventurer("AI"));
         enemies.add(createRandomAdventurer("AI"));
       }
-      
+      else if ((input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+        quit();
+      }
+      String preprompt2 = "Enter a number from 1-3";
+      TextBox(29, 2, 78, 1, preprompt2);
     }
 
     drawScreen(party, enemies);
@@ -317,6 +321,10 @@ public class Game{
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
           TextBox(startRow,4,34,5,(party.get(whichPlayer).support(party.get(target))));
           /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+        }
+        else{
+          String reprompt = "Invalid input. Type: attack/special/support/quit";
+            TextBox(29, 2, 78, 1, preprompt);
         }
         // else if(input.startsWith("ch ") || input.startsWith("charge ")){
         //   /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
