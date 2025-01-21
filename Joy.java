@@ -46,8 +46,8 @@ public class Joy extends Adventurer{
     int damage = (int)(Math.random()*3)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
     restoreSpecial(2);
-    return this + " overloaded "+ other + " with serotonin and dealt "+ damage +
-    " points of damage.";
+    return this + " overloaded "+ other + " with serotonin, dealing "+ damage +
+    " damage!";
   }
 
 
@@ -57,7 +57,7 @@ public class Joy extends Adventurer{
     }
     if(getSpecial() >= 2){
       this.setSpecial(this.getSpecial() - 2);
-      return "Gives a Pep Talk to "+other+" and restores "
+      return this + "Gives a Pep Talk to "+other+" and restores "
       + other.restoreSpecial(5)+" "+other.getSpecialName();
     }else{
       return "Not optimistic enough to use Pep Talk. Instead "+support(other);
@@ -68,16 +68,16 @@ public class Joy extends Adventurer{
   /*Restores 5 HP to other*/
   public String support(Adventurer other){
     int prevHP = other.getHP();
-    if(prevHP + 5 > getmaxHP()) other.setHP(other.getmaxHP());
-    else other.setHP(other.getHP() + 5);
-    return this + "Says encouraging words to "+other+" and restores their HP from "
+    if(prevHP + 5 > getmaxHP()){ other.setHP(other.getmaxHP());}
+    else{other.setHP(other.getHP() + 5);}
+    return this +  " encourages "+other+" restores HP from "
     + prevHP +" to " + other.getHP();
   }
   /*Restores 3 special and 1 hp to self.*/
   public String support(){
     int hp = 3;
     setHP(getHP()+hp);
-    return this +" watches cat videos to restores "+restoreSpecial(3)+" "
+    return this +" watches cat videos, restores "+restoreSpecial(3)+" "
     + getSpecialName()+ " and "+hp+" HP";
   }
 }

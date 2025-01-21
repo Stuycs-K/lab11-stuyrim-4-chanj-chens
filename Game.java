@@ -173,7 +173,7 @@ public class Game{
     else{
       display = "DEFEAT!";
     }
-    TextBox(11,12,50,5,display);
+    TextBox(13,34,12,3,display);
   }
 
 
@@ -399,7 +399,7 @@ public class Game{
         String prompt = "press enter to see next turn";
         TextBox(29, 2, 78, 1, prompt);
         input = userInput(in);
-        startRow +=3;
+        startRow +=4;
         whichOpponent++;
 
       }//end of one enemy.
@@ -437,9 +437,11 @@ public class Game{
       drawScreen(party,enemies);
       if(enemies.size() == 0){
         endScreenDisplay(true);
+        quit();
       }
       if(party.size() == 0){
         endScreenDisplay(false);
+        quit();
       }
 
     }//end of main game loop

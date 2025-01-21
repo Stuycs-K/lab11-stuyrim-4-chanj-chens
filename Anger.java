@@ -48,7 +48,7 @@ public class Anger extends Adventurer{
     int damage = (int)(Math.random()*6+2)+2 + damageMod(buff,debuff);
     other.applyDamage(damage);
     restoreSpecial(1);
-    return this + " punches "+ other + ", burning "+ other + " for " + damage +
+    return this + " punches "+ other +  " for " + damage +
     " points of damage. Rage UP! (" + getSpecial() + ")";
   }
 
@@ -58,26 +58,26 @@ public class Anger extends Adventurer{
       int damage = (getSpecial()*3)+(int)(Math.random()*5) + damageMod(buff,debuff);
       setSpecial(0);
       other.applyDamage(damage);
-      return this + " EXPLODES and deals "+ damage + " to " + other + "!";
+      return this + " EXPLODES, deals "+ damage + " to " + other + "!";
     }else{
       int damage = 15 + (int)(Math.random()*5) + damageMod(buff,debuff);
       int selfdamage = 5 * (5-getSpecial());
       this.setSpecial(0);
       this.setHP(getHP() - selfdamage);
       other.applyDamage(damage);
-      return "Not enough rage to use \"EXPLODE!\". Consumed " + selfdamage + " health! " + this + " EXPLODES and deals "+ damage + " to " + other + "!";
+      return "Not enough rage for \"EXPLODE!\". Consumed " + selfdamage + " health! " + this + " EXPLODES and deals "+ damage + " to " + other + "!";
     }
 
   }
   public String support(Adventurer other){
     other.buffOn();
-    return this + " gaslights "+other+" and makes thema angry!";
+    return this + " gaslights "+other+", making them angry!";
   }
 
 
   public String support(){
     buffOn();
     setSpecial(getSpecial()+3);
-    return this+" gaslights himself into being angry, boosting damage and restoring 3 rage!";
+    return this+" gaslights himself , boosting damage and restoring 3 rage!";
   }
 }

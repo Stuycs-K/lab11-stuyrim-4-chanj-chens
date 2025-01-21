@@ -50,14 +50,14 @@ public class Anxiety extends Adventurer{
       public String special(Adventurer other){
           setSpecial(0);
           other.debuffOn();
-          return this + " brings the mood down..." + other + "'s damage decreased!";
+          return this + " brings the mood down. " + other + "'s damage decreased!";
         }
         public String support(Adventurer other){
             other.setHP(other.getHP() + 1);
-            return this + " heals " + other + " for 1 hp. Why would you use Anxiety to heal?";
+            return this + " heals " + other + " for 1hp. Whyuse Anxiety to heal?";
           }
         public String support(){
             setHP(getHP()+1);
-            return this + " heals " + this + " for 1 hp. Why would you use Anxiety to heal?";
+            return this + " heals " + this + " for 1hp. Why use Anxiety to heal?";
         }
 }
