@@ -100,10 +100,10 @@ public class Game{
       if (choicePlayer == 0){
         return new Anxiety(name);
       }
-      if (choicePlayer == 1){
+      else if (choicePlayer == 1){
         return new Anger(name);
       }
-      if (choicePlayer == 2){
+      else{
         return new Joy(name);
       }
       return null;
@@ -163,6 +163,18 @@ public class Game{
     } catch(NumberFormatException e){
       return false;
     }
+  }
+  public static void endScreenDisplay(boolean win){
+    Text.clear();
+    drawBackground();
+    String display;
+    if(win){
+      display = "VICTORY!";
+    }
+    else{
+      display = "DEFEAT!";
+    }
+    TextBox(11,12,50,5,display);
   }
 
 
@@ -410,8 +422,23 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
+      for(Adventurer i : enemies){
+        if(i.getHP() <= 0){
+          enemies.remove(i);
+        }
+      }
+      for(Adventurer x : party){
+        if(x.getHP() <= 0){
+          party.remove(x);
+        }
+      }
       drawScreen(party,enemies);
-
+      if(enemies.size() == 0){
+        endScreenDisplay(true);
+      }
+      if(party.size() == 0){
+        endScreenDisplay(false);
+      }
 
     }//end of main game loop
 
