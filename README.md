@@ -5,15 +5,13 @@
 
 Make a clear list of features that work/dont work
 
-:white_check_mark: This feature works.
+:white_check_mark: attack, special, support for all classes 
 
-:question: This feature works partially.
+:white_check_mark: constructors for classes, including empty constructor 
 
-:ballot_box_with_check: This extra (beyond the things that the lab was supposed to do) feature works.
+:white_check_mark:
 
-:x: This required feature does not work.
-
-:beetle: This is a bug that affects the game.
+:ballot_box_with_check: buffs and debuffs turn on/off depending on turns and whether or not adventurers receive a buff
 
 
 ## Adventurer Subclasses
