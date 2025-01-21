@@ -319,7 +319,7 @@ public class Game{
       
       if(partyTurn){
         while (!validInput(input)){
-          String reprompt = "Invalid. Type: attack/special/support/quit and 0/1/2 to target an enemy.";
+          String reprompt = "Invalid. Type attack/special/support/quit + 0/1/2 to target";
           TextBox(29, 2, 78, 1, reprompt);
           input = userInput(in);
         }
