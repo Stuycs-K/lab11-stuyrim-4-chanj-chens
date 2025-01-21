@@ -5,7 +5,7 @@
 
 Make a clear list of features that work/dont work
 
-:white_check_mark: Working Features
+Working Features
 
 :white_check_mark: attack, special, support for all classes and targeting!
 
@@ -15,8 +15,16 @@ Make a clear list of features that work/dont work
 
 :white_check_mark: Asks for a second prompt if you fail to submit a working input
 
+:white_check_mark: program ends when the user choosed to quit, or all enemies is defeated, or the entire party is defeated. 
 
-:ballot_box_with_check: Extra features that work
+:white_check_mark: Win/lose screen.
+
+
+Extra features that work
+
+:ballot_box_with_check: Allows user to pick number of enemies
+
+:ballot_box_with_check: Randomly generates user's team 
 
 :ballot_box_with_check: buffs and debuffs turn on/off depending on whether or not adventurers receive a buff, can be given by Anger/Anxiety respectively
 
@@ -26,6 +34,7 @@ Make a clear list of features that work/dont work
 
 :ballot_box_with_check: Anger has a secondary special that consumes his own health to deal damage
 
+:beetle: More like a disclaimer: on the enemy team's last move, the action message doesn't seem to appear. If you scroll up to the previous screen, it actually does show, but the transition to the next turn clears the screen.
 
 ## Adventurer Subclasses
 
