@@ -166,6 +166,7 @@ public class Game{
   }
 
 
+
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
@@ -214,13 +215,6 @@ public class Game{
     return result;
   }
 
-  public static boolean validInput(String input){
-    return (input.startsWith("attack") || input.startsWith("a")
-          || input.startsWith("special") || input.startsWith("sp")
-          || input.startsWith("su") || input.startsWith("support")
-          || (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit")));
-  }
-
   public static void run(){
     //Clear and initialize
     Text.hideCursor();
@@ -241,9 +235,9 @@ public class Game{
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
-    party.add(createRandomAdventurer("Riley"));
-    party.add(createRandomAdventurer("Riley"));
-    party.add(createRandomAdventurer("Riley"));
+    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Mr. K"));
+    party.add(createRandomAdventurer("Mr. K"));
     
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
@@ -260,28 +254,34 @@ public class Game{
     
     //display this prompt at the start of the game.
     String preprompt1 = "How many enemies do you want to play against?";
-      TextBox(29, 2, 60, 1, preprompt1);
-
-    while(!(input.equals("1") || input.equals("2") || input.equals("3") || input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+    TextBox(29, 2, 60, 1, preprompt1);
+ 
+    while(input.equals("")){
       input = userInput(in);
 
       if (input.equals("1")){
         enemies.add(new Boss());
       }
-      else if (input.equals("2")){
-        enemies.add(createRandomAdventurer("AI"));
-        enemies.add(createRandomAdventurer("AI"));
+      if (input.equals("2")){
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
       }
-      else if(input.equals("3")){
-        enemies.add(createRandomAdventurer("AI"));
-        enemies.add(createRandomAdventurer("AI"));
-        enemies.add(createRandomAdventurer("AI"));
+      if (input.equals("3")){
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
+        enemies.add(createRandomAdventurer("Mr. S"));
       }
-      else if ((input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
-        quit();
+      
+    }
+    for(Adventurer i : enemies){
+      if(i.getHP() <= 0){
+        enemies.remove(i);
       }
-      String preprompt2 = "Enter a number from 1-3";
-      TextBox(29, 2, 78, 1, preprompt2);
+    }
+    for(Adventurer i : party){
+      if(i.getHP() <= 0){
+        party.remove(i);
+      }
     }
 
     drawScreen(party, enemies);
@@ -301,13 +301,7 @@ public class Game{
       //TextBox(24,2,78,1,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
 
       //display event based on last turn's input
-      
       if(partyTurn){
-        while (!validInput(input)){
-          String reprompt = "Invalid input. Type: attack/special/support/quit";
-          TextBox(29, 2, 78, 1, reprompt);
-          input = userInput(in);
-        }
         String sTarget = input.substring(input.length() -1);
         int target = 0;
         if (isNumeric(sTarget)){
@@ -409,7 +403,7 @@ public class Game{
         Text.clear();
         drawScreen(party,enemies);
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/support/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
         TextBox(29, 2, 78, 1, prompt);
       }
 
